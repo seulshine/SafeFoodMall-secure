@@ -25,6 +25,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ssafy.dao.UserDaoImpl;
+<<<<<<< HEAD
+=======
+//import com.ssafy.pms.Phone;
+>>>>>>> branch 'master' of https://lab.ssafy.com/yeseul/safefood_spring.git
 import com.ssafy.vo.User;
 
 import io.swagger.annotations.ApiOperation;
@@ -35,9 +39,10 @@ import lombok.extern.slf4j.Slf4j;
 @CrossOrigin(value="*") // 어디서 들어오는거든 (외부에서) 다 허용 하겠다.
 @Slf4j
 public class UserRestController {
-	@Autowired
-	UserDaoImpl dao;
+//	@Autowired
+//	UserDaoImpl dao;
 	
+<<<<<<< HEAD
 	@GetMapping("login.do")
 	public String getLoginForm() {
 		return "main";
@@ -163,4 +168,22 @@ public class UserRestController {
 	}
 	
 	
+=======
+//	
+//	@PostMapping("/login")
+//	@ApiOperation("사용자 로그인")
+//	public ResponseEntity<Map<String, Object>> login(@PathVariable String id, @PathVariable String pw) {
+//		try {
+//			User user = dao.searchUser(id);
+//			
+//			return response(phones, HttpStatus.OK, true);
+//			
+//		} catch(RuntimeException e) {
+//			logger.error("조회 실패", e);
+//			return response(e.getMessage(), HttpStatus.CONFLICT, false);
+//			
+//		}
+//		
+//	}
+>>>>>>> branch 'master' of https://lab.ssafy.com/yeseul/safefood_spring.git
 }

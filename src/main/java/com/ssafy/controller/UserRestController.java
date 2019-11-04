@@ -66,7 +66,6 @@ public class UserRestController {
 			return "main";
 			
 		}
-		
 	}
 	
 	@GetMapping("logout.do")

@@ -9,6 +9,7 @@ import java.util.LinkedList;
 import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.ssafy.util.DBUtil;
 import com.ssafy.util.FoodSaxParser;
@@ -18,6 +19,9 @@ import com.ssafy.vo.User;
 
 public class UserDaoImpl {
 
+	@Autowired
+	SqlSession session;
+	
 	private static UserDaoImpl dao = new UserDaoImpl();
 	public static UserDaoImpl getDao() {
 		return dao;

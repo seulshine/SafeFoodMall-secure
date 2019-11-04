@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.mapper.UserMapper">
+  <select id="selectByMap" parameterType='string' resultType='map'>
+    select * from user where userid = #{userid}
+  </select>
+  
+  <select id="selectByBean" parameterType='string' resultType='user'>
+  	select * from user where id = #{userid}
+  </select>
+  
+  <select id="selectAll" resultType='user'>
+  	select * from user
+  </select>
+  
+  <select id="insert" resultType='user'>
+  	insert into user (id, password, name, address, phone, allergy)
+  				values(#{id}, #{password}, #{name}, #{address}, #{phone}, #{allergy})
+  </select>
+  
+  <select id="updateUser" resultType='user'>
+  	UPDATE user SET password=#{password}, name=#{name}, address=#{address}, phone=#{phone}, allergy=#{allergy} WHERE id=#{id}
+  </select>
+  
+  <select id="delete" resultType='user'>
+  	delete from user where id=#{id}
+  </select>
+  
+<!--   <select id="selectDetail" parameterType="string"> -->
+<!--   	select u.*, h.* -->
+<!--   	from user u join history h using(userid) -->
+<!--   	where userid=#{userid} -->
+<!--   </select> -->
+  
+  <resultMap type="user" id="userDefault">
+	<result column='id' property="id"/>
+	<result column='password' property="password"/>
+	<result column='name' property="name"/>
+	<result column='address' property="address"/>
+	<result column='phone' property="'phone'"/>
+	<result column='allergy' property="'allergy'"/>
+  </resultMap>
+  
+  
+  <resultMap type="user" id="userDetail" extends="userDefault">
+  	<collection property="foodList" ofType="food" resultMap="com.ssafy.mapper.FoodMapper.foodDefault">
+  	
+  	</collection>
+  </resultMap>
+  
+  
+</mapper>

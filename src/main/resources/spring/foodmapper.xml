@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.mapper.FoodMapper">
+
+	<insert id="insertFood" parameterType="food">
+		INSERT INTO FOOD VALUES (#{code}, #{name}, #{supportpereat}, #{calory}, #{carbo}, #{protein}, #{fat}, #{sugar}, #{natrium}, #{chole}, #{fattyacid}, #{transfat}, #{maker}, #{material}, #{img}, #{allergy})
+	</insert>
+
+
+  <resultMap type="food" id="foodDefault">
+	<result column='code' property="code"/>
+	<result column='name' property="name"/>
+	<result column='supportpereat' property="supportpereat"/>
+	<result column='calory' property="calory"/>
+	<result column='carbo' property="'carbo'"/>
+	<result column='protein' property="'protein'"/>
+	<result column='fat' property="'fat'"/>
+	<result column='sugar' property="'sugar'"/>
+	<result column='natrium' property="'natrium'"/>
+	<result column='chole' property="'chole'"/>
+	<result column='fattyacid' property="'fattyacid'"/>
+	<result column='transfat' property="'transfat'"/>
+	<result column='maker' property="'maker'"/>
+	<result column='material' property="'material'"/>
+	<result column='img' property="'img'"/>
+	<result column='allergy' property="'allergy'"/>
+  </resultMap>
+  
+  
+</mapper>

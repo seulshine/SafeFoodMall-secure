@@ -7,6 +7,8 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import org.springframework.beans.factory.annotation.Autowired;
+
 import com.google.gson.Gson;
 import com.ssafy.dao.FoodDao;
 import com.ssafy.dao.FoodDaoImpl;
@@ -19,11 +21,12 @@ public class FoodController implements Controller {
 			throws ServletException, IOException {
 		
 		
-		FoodDao dao = FoodDaoImpl.getDao();
-		List<Food> foods = dao.getList();
-		
-		Gson gson = new Gson();
-		return gson.toJson(foods);
+//		FoodDao dao = FoodDaoImpl.getDao();
+//		List<Food> foods = dao.getList();
+//		
+//		Gson gson = new Gson();
+//		return gson.toJson(foods);
+		return null;
 	}
 
 }

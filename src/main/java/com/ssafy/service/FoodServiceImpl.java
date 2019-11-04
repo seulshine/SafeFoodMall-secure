@@ -2,24 +2,30 @@ package com.ssafy.service;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
 import com.ssafy.dao.FoodDao;
 import com.ssafy.dao.FoodDaoImpl;
 import com.ssafy.vo.Food;
 import com.ssafy.vo.FoodPageBean;
 
+@Service
 public class FoodServiceImpl implements FoodService{
 	
-	private static FoodService service = new FoodServiceImpl();
-	public static FoodService getService() {
-		return service;
-	}
+//	private static FoodService service = new FoodServiceImpl();
+//	public static FoodService getService() {
+//		return service;
+//	}
 	
-	private FoodDao dao;
+	@Autowired
+	FoodDao dao;
+	
 	private String[] allergys={"대두","땅콩","우유","게","새우","참치","연어","쑥","소고기","닭고기","돼지고기","복숭아","민들레","계란흰자"};
 
-	private FoodServiceImpl() {
-		 dao = FoodDaoImpl.getDao();
-	}
+//	public FoodServiceImpl() {
+//		 dao = FoodDaoImpl.getDao();
+//	}
 	
 	public List<Food> searchAll(FoodPageBean bean) {
 		return dao.searchAll(bean);

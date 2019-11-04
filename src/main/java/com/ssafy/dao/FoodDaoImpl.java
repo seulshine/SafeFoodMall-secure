@@ -13,6 +13,8 @@ import javax.xml.parsers.SAXParser;
 import javax.xml.parsers.SAXParserFactory;
 
 import org.apache.ibatis.session.SqlSession;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.ssafy.service.FoodService;
 import com.ssafy.service.FoodServiceImpl;
@@ -25,93 +27,44 @@ import com.ssafy.vo.Food;
 import com.ssafy.vo.FoodPageBean;
 import com.ssafy.vo.SafeFoodException;
 
+@Repository
 public class FoodDaoImpl implements FoodDao {
 
-	private static FoodDao dao = new FoodDaoImpl();
-
-	public static FoodDao getDao() {
-		return dao;
-	}
-
-	private FoodDaoImpl() {
-		loadData();
-	}
-
+	@Autowired
+	SqlSession session;
+	
+	
 	DBUtil util = DBUtil.getUtil();
 	private List<Food> foods = null;
 	private final String namespace = "com.ssafy.mapper.UserMapper.";
 	private final String foodnamespace = "com.ssafy.mapper.FoodMapper.";
 	
 	public List<Food> getList(){
-		return foods;
+		return null;
+//		return foodnamespace.selectList();
 	}
 	
 	/**
 	 * 식품 영양학 정보와 식품 정보를 xml 파일에서 읽어온다.
 	 */
 	public void loadData() {
-		// FoodNutritionSaxPaser를 이용하여 Food 데이터들을 가져온다
-        FoodSaxParser parser = new FoodSaxParser();
-        foods = parser.getFoods();
-        System.out.println("가나다라마바사박준성");
-        // 가져온 Food 리스트 데이터를 DB에 저장한다.
-        SqlSession session = MyBatisUtil.getUtil().getSession();
-        for (Food food : foods) {
-            System.out.println(food);
-            insertAllFood(session, food);
-        }
-        session.commit();
-		
 //		// FoodNutritionSaxPaser를 이용하여 Food 데이터들을 가져온다
-//		FoodSaxParser parser = new FoodSaxParser();
-//		foods = parser.getFoods();
+//        FoodSaxParser parser = new FoodSaxParser();
+//        foods = parser.getFoods();
+//        System.out.println("가나다라마바사박준성");
+//        // 가져온 Food 리스트 데이터를 DB에 저장한다.
+//        SqlSession session = MyBatisUtil.getUtil().getSession();
+//        for (Food food : foods) {
+//            System.out.println(food);
+//            insertAllFood(session, food);
+//        }
+//        session.commit();
 //
-//		// 가져온 Food 리스트 데이터를 DB에 저장한다.
-//		try {
-//			Connection con = util.getConnection();
-//			for (Food food : foods) {
-//				System.out.println(food);
-//				insertAllFood(con, food);
-//			}
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		}
 	}
 	
 	private void insertAllFood(SqlSession session, Food food){
 		String stmt = foodnamespace + "insertFood";
         session.insert(stmt, food);
-		
-//		String sql = "insert into food values (?,?,?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
-//		PreparedStatement pstmt = null;
-//		try {
-//			con.setAutoCommit(false);
-//			pstmt = con.prepareStatement(sql);
-//			pstmt.setInt(1, food.getCode());
-//			pstmt.setString(2, food.getName());
-//			pstmt.setDouble(3, food.getSupportpereat());
-//			pstmt.setDouble(4, food.getCalory());
-//			pstmt.setDouble(5, food.getCarbo());
-//			pstmt.setDouble(6, food.getProtein());
-//			pstmt.setDouble(7, food.getFat());
-//			pstmt.setDouble(8, food.getSugar());
-//			pstmt.setDouble(9, food.getNatrium());
-//			pstmt.setDouble(10, food.getChole());
-//			pstmt.setDouble(11, food.getFattyacid());
-//			pstmt.setDouble(12, food.getTransfat());
-//			pstmt.setString(13, food.getMaker());
-//			pstmt.setString(14, food.getMaterial());
-//			pstmt.setString(15, food.getImg());
-//			pstmt.setString(16, food.getAllergy());
-//			pstmt.executeUpdate();
-//			con.commit();
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//			util.rollback(con);
-//		} 
-//		finally {
-//			util.close(pstmt);
-//		}
 	}
 
 	/**

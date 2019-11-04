@@ -10,6 +10,7 @@ import java.util.List;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Repository;
 
 import com.ssafy.util.DBUtil;
 import com.ssafy.util.FoodSaxParser;
@@ -17,6 +18,8 @@ import com.ssafy.vo.Food;
 import com.ssafy.vo.FoodPageBean;
 import com.ssafy.vo.User;
 
+
+@Repository
 public class UserDaoImpl {
 
 	@Autowired
@@ -37,24 +40,23 @@ public class UserDaoImpl {
 	/**
 	 * 사용자 데이터를 DB에서 읽어온다.
 	 */
-	public void loadData(SqlSession session) {
+	public void loadData() {
 		String stmt = namespace + "selectAll";
 		userlist = session.selectList(stmt);
 		
 	}
 
-	public void insertUser(User user, SqlSession session){
+	public int insertUser(User user){
 		String stmt = namespace + "insert";
-		session.insert(stmt, user);
-		session.commit();
+		return session.insert(stmt, user);
+		//session.commit();
 
 	}
 	
-	public void updateUser(User user, SqlSession session) {
+	public int updateUser(User user) {
 		String stmt = namespace + "updateUser";
-		session.update(stmt, user);
-		session.commit();
-		
+		return session.update(stmt, user);
+	
 	}
 
 	/**
@@ -63,16 +65,16 @@ public class UserDaoImpl {
 	 * @param code 검색할 user 코드
 	 * @return user 코드에 해당하는 user 정보, 없으면 null이 리턴됨
 	 */
-	public User searchUser(String id, SqlSession session) {
+	public User searchUser(String id) {
 		String stmt = namespace + "selectByBean";
 		return session.selectOne(stmt, id);
 		
 	}
 
-	public void deleteUser(String id, SqlSession session) {
+	public int deleteUser(String id) {
 		String stmt = namespace + "delete";
-		session.delete(stmt, id);
-		session.commit();
+		return session.delete(stmt, id);
+		//session.commit();
 	}
 
 	public static void main(String[] args) {

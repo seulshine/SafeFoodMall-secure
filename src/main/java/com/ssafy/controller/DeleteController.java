@@ -27,7 +27,7 @@ public class DeleteController implements Controller {
 		
 		try {
 			UserDaoImpl dao = UserDaoImpl.getDao();
-			dao.deleteUser(user.getId(), sqlSession);
+			dao.deleteUser(user.getId());
 			return "redirect:logout.do";
 		} catch (Exception e) {
 			e.printStackTrace();

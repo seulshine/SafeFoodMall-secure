@@ -19,11 +19,11 @@ public class MainController extends HttpServlet {
 
 	@Override
 	public void init() throws ServletException {
-		map.put("/login.do", new LoginController());
-		map.put("/logout.do", new LogoutController());
-		map.put("/regist.do", new RegistController());
-		map.put("/update.do", new UpdateController());
-		map.put("/delete.do", new DeleteController());
+//		map.put("/login.do", new LoginController());
+//		map.put("/logout.do", new LogoutController());
+//		map.put("/regist.do", new RegistController());
+//		map.put("/update.do", new UpdateController());
+//		map.put("/delete.do", new DeleteController());
 		map.put("/food.do", new FoodController());
 		map.put("/insertHistory.do", new HistoryInsertController());
 	}

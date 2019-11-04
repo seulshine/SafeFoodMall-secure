@@ -46,7 +46,7 @@ public class RegistController implements Controller {
 		try {
 			
 			UserDaoImpl dao = UserDaoImpl.getDao();
-			dao.insertUser(user, sqlSession);
+			dao.insertUser(user);
 			session.setAttribute("user", user);
 			session.setAttribute("msg", "회원가입이 되었습니다.");
 //			memberService.update(member);

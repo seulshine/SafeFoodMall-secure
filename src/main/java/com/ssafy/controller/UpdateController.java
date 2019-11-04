@@ -37,7 +37,7 @@ public class UpdateController implements Controller {
 		try {
 			SqlSession sqlSession = util.getSession();
 			UserDaoImpl dao = UserDaoImpl.getDao();
-			dao.updateUser(user, sqlSession);					
+			dao.updateUser(user);					
 			HttpSession session = request.getSession();
 			session.setAttribute("msg", "정보가 수정되었습니다.");
 			session.setAttribute("LoginUser", user);

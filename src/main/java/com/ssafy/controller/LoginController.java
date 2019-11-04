@@ -33,7 +33,7 @@ public class LoginController implements Controller {
 		SqlSession sqlSession = util.getSession();
 		try {
 			UserDaoImpl dao = UserDaoImpl.getDao();
-			User user = dao.searchUser(id, sqlSession);
+			User user = dao.searchUser(id);
 			if (user != null) {
 				System.out.println(user.getAllergy());
 				if (user.getPassword().equals(pw)) {

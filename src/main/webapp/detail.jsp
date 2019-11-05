@@ -81,9 +81,9 @@ text-align: center;
 					<form method="post" action="updateHistory">
 						<div class="col-md-3">
 							<label for="search">Quantity</label> <input type="number"
-								id="count" name="count" value="" class="form-control">
+								id="count" name="count" class="form-control" value="${count}">
 								<br>
-							<input type="hidden" id="code" name="code">
+							<input type="hidden" id="code" name="code" value="${code}">
 							<input type="hidden" id="id" name="id" value="${LoginUser.id }">
 							<button id="add" type="submit" class="btn btn-default" onclick="addfood">
 								<span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span>

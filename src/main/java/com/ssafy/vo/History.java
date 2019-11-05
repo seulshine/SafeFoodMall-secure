@@ -21,6 +21,11 @@ public class History {
 		return "History [historyNo=" + historyNo + ", id=" + id + ", code=" + code + ", count=" + count
 				+ ", eatingDate=" + eating_date + "]";
 	}
+
+	public History(String id, int code) {
+		this.id = id;
+		this.code = code;
+	}
 	
 	
 	

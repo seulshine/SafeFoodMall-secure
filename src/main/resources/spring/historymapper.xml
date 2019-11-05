@@ -10,7 +10,7 @@
     	update history set count = #{count} where id= #{id} and code = #{code}
     </update>
     
-    <select id="selectHistory" resultType="int">
+    <select id="selectHistory" parameterType="history" resultType="String">
     	select count from history where id= #{id} and code = #{code}
     </select>
 </mapper>

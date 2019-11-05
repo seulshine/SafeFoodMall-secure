@@ -34,13 +34,8 @@ public class HistoryRestController {
 	
 	@GetMapping("updateHistory")
 	public String getLoginForm(History history, Model model) {
-		try {
-			int result = hservice.searchHistory(history);
-			model.addAttribute("count", result); // 여기서 말고 이따 영철오빠꺼에 추가
-		}catch (Exception e) {
-		
-		}
-		return "redirect:detail.jsp";
+
+		return "detail";
 	}
 	
 	@PostMapping("updateHistory")
@@ -57,19 +52,13 @@ public class HistoryRestController {
 				result = hservice.insertHistory(history); // 업데이트 할게 없다면 insert
 				System.out.println(result + " : insert");
 			}
-			return "redirect:detail.jsp";
+			return "redirect:detail.do?code=" + history.getCode() + "&id=" + history.getId();
 		} catch (Exception e) {
 			log.error("getAllFoods", e);
 			//throw e;		// 얘를 호출한놈은 spring. 이걸 톰캣이 클라이언트한테 에러로 보낸다.
-			try {
-				int result = hservice.insertHistory(history); // 업데이트 할게 없다면 insert
-				System.out.println(result + " : insert");
-				return "redirect:detail.jsp";
-			} catch(Exception err) {
-				throw e;
-			}
+
 		}
 		
-		
+		return "redirect:detail.do?code=" + history.getCode() + "&id=" + history.getId()+".jsp";
 	}
 }

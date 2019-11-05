@@ -8,6 +8,9 @@
 		INSERT INTO FOOD VALUES (#{code}, #{name}, #{supportpereat}, #{calory}, #{carbo}, #{protein}, #{fat}, #{sugar}, #{natrium}, #{chole}, #{fattyacid}, #{transfat}, #{maker}, #{material}, #{img}, #{allergy})
 	</insert>
 
+	<select id="getAllFoods" resultType="food">
+		select * from food
+	</select>
 
   <resultMap type="food" id="foodDefault">
 	<result column='code' property="code"/>

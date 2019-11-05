@@ -29,7 +29,7 @@ public class UserDaoImpl {
 	public static UserDaoImpl getDao() {
 		return dao;
 	}
-	private UserDaoImpl() {
+	public UserDaoImpl() {
 //		loadData(session);
 	}
 

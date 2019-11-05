@@ -1,49 +1,23 @@
 package com.ssafy.dao;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
-import java.util.Map;
-
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
-import com.ssafy.service.FoodService;
-import com.ssafy.service.FoodServiceImpl;
-import com.ssafy.util.DBUtil;
-import com.ssafy.util.FoodNutritionSAXHandler;
-import com.ssafy.util.FoodSAXHandler;
-import com.ssafy.util.FoodSaxParser;
-import com.ssafy.util.MyBatisUtil;
 import com.ssafy.vo.Food;
 import com.ssafy.vo.FoodPageBean;
-import com.ssafy.vo.SafeFoodException;
 
 @Repository
 public class FoodDaoImpl implements FoodDao {
 
 	@Autowired
 	SqlSession session;
-	
-	
-	DBUtil util = DBUtil.getUtil();
-	private List<Food> foods = null;
-	private final String namespace = "com.ssafy.mapper.UserMapper.";
+
 	private final String foodnamespace = "com.ssafy.mapper.FoodMapper.";
-	
-	public List<Food> getList(){
-		return null;
-//		return foodnamespace.selectList();
-	}
-	
+
 	/**
 	 * 식품 영양학 정보와 식품 정보를 xml 파일에서 읽어온다.
 	 */
@@ -61,10 +35,10 @@ public class FoodDaoImpl implements FoodDao {
 //        session.commit();
 //
 	}
-	
-	private void insertAllFood(SqlSession session, Food food){
+
+	private void insertAllFood(Food food) {
 		String stmt = foodnamespace + "insertFood";
-        session.insert(stmt, food);
+		session.insert(stmt, food);
 	}
 
 	/**
@@ -85,37 +59,38 @@ public class FoodDaoImpl implements FoodDao {
 	public int foodCount(FoodPageBean bean) {
 
 		// 구현하세요.
-		String key = bean.getKey(); // name, maker, material
-		String word = bean.getWord();
-		String sql = null;
-		if (key.equals("name")) {
-			sql = "select * from food where name = ? ";
-		} else if (key.equals("maker")) {
-			sql = "select * from food where maker = ? ";
-		} else { // key.equals("material")
-			sql = "select * from food where material = ? ";
-		}
-
-		int cnt = 0;
-		Connection con = null;
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		try {
-			con = util.getConnection();
-			pstmt = null;
-			rset = null;
-			pstmt = con.prepareStatement(sql);
-			pstmt.setString(1, word);
-			rset = pstmt.executeQuery();
-			cnt = pstmt.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			util.close(rset);
-			util.close(pstmt);
-		}
-
-		return cnt;
+//		String key = bean.getKey(); // name, maker, material
+//		String word = bean.getWord();
+//		String sql = null;
+//		if (key.equals("name")) {
+//			sql = "select * from food where name = ? ";
+//		} else if (key.equals("maker")) {
+//			sql = "select * from food where maker = ? ";
+//		} else { // key.equals("material")
+//			sql = "select * from food where material = ? ";
+//		}
+//
+//		int cnt = 0;
+//		Connection con = null;
+//		PreparedStatement pstmt = null;
+//		ResultSet rset = null;
+//		try {
+//			con = util.getConnection();
+//			pstmt = null;
+//			rset = null;
+//			pstmt = con.prepareStatement(sql);
+//			pstmt.setString(1, word);
+//			rset = pstmt.executeQuery();
+//			cnt = pstmt.executeUpdate();
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			util.close(rset);
+//			util.close(pstmt);
+//		}
+//
+//		return cnt;
+		return 0;
 	}
 
 	/**
@@ -125,113 +100,8 @@ public class FoodDaoImpl implements FoodDao {
 	 * @return 조회한 식품 목록
 	 * @throws SQLException
 	 */
-	public List<Food> searchAll(FoodPageBean bean) {
-		List<Food> finds = new LinkedList<Food>();
-		if (bean != null) {
-			Connection con = null;
-			try {
-				con = util.getConnection();
-			} catch (SQLException e1) {
-				e1.printStackTrace();
-			}
-
-			String key = bean.getKey();
-			String word = bean.getWord();
-
-			String sql;
-
-			if (!key.equals("all") && word != null && !word.trim().equals("")) {
-
-				// 구현 하세요.
-				if (key.equals("name")) {
-					sql = "select * from food where locate (?, name)";
-				} else if (key.equals("maker")) {
-					sql = "select * from food where locate (?, maker) ";
-				} else { // key.equals("material")
-					sql = "select * from food where locate (?, material) ";
-				}
-
-				PreparedStatement pstmt = null;
-				ResultSet rset = null;
-
-				try {
-					pstmt = con.prepareStatement(sql);
-					pstmt.setString(1, word);
-
-					rset = pstmt.executeQuery();
-
-					while (rset.next()) {
-						Food food = new Food();
-						food.setCode(rset.getInt(1));
-						food.setName(rset.getString(2));
-						food.setSupportpereat(rset.getDouble(3));
-						food.setCalory(rset.getDouble(4));
-						food.setCarbo(rset.getDouble(5));
-						food.setProtein(rset.getDouble(6));
-						food.setFat(rset.getDouble(7));
-						food.setSugar(rset.getDouble(8));
-						food.setNatrium(rset.getDouble(9));
-						food.setChole(rset.getDouble(10));
-						food.setFattyacid(rset.getDouble(11));
-						food.setTransfat(rset.getDouble(12));
-						food.setMaker(rset.getString(13));
-						food.setMaterial(rset.getString(14));
-						food.setImg(rset.getString(15));
-						finds.add(food);
-					}
-
-				} catch (SQLException e) {
-					e.printStackTrace();
-				} finally {
-					util.close(rset);
-					util.close(pstmt);
-					util.close(con);
-				}
-
-			} else {
-				sql = "select * from food";
-				PreparedStatement pstmt = null;
-				ResultSet rset = null;
-
-				try {
-					pstmt = con.prepareStatement(sql);
-					rset = pstmt.executeQuery();
-
-					while (rset.next()) {
-						Food food = new Food();
-						food.setCode(rset.getInt(1));
-						food.setName(rset.getString(2));
-						food.setSupportpereat(rset.getDouble(3));
-						food.setCalory(rset.getDouble(4));
-						food.setCarbo(rset.getDouble(5));
-						food.setProtein(rset.getDouble(6));
-						food.setFat(rset.getDouble(7));
-						food.setSugar(rset.getDouble(8));
-						food.setNatrium(rset.getDouble(9));
-						food.setChole(rset.getDouble(10));
-						food.setFattyacid(rset.getDouble(11));
-						food.setTransfat(rset.getDouble(12));
-						food.setMaker(rset.getString(13));
-						food.setMaterial(rset.getString(14));
-						food.setImg(rset.getString(15));
-						food.setAllergy(rset.getString(16));
-						finds.add(food);
-
-					}
-
-				} catch (SQLException e) {
-					e.printStackTrace();
-				} finally {
-					util.close(rset);
-					util.close(pstmt);
-					util.close(con);
-				}
-
-			}
-
-		}
-		return finds;
-
+	public List<Food> searchAll() {
+		return session.selectList(foodnamespace + "getAllFoods");
 	}
 
 	/**
@@ -242,52 +112,53 @@ public class FoodDaoImpl implements FoodDao {
 	 */
 	public Food search(int code) {
 		// 코드에 맞는 식품 검색하여 리턴
-		String sql = "select * from food where code = ? ";
-		PreparedStatement pstmt = null;
-		ResultSet rset = null;
-		Food food = new Food();
-		Connection con = null;
-		try {
-			con = util.getConnection();
-		} catch (SQLException e1) {
-			e1.printStackTrace();
-		}
-
-		try {
-			pstmt = con.prepareStatement(sql);
-			pstmt.setInt(1, code);
-			rset = pstmt.executeQuery();
-
-			if (rset.next()) {
-				
-				food.setCode(rset.getInt(1));
-				food.setName(rset.getString(2));
-				food.setSupportpereat(rset.getDouble(3));
-				food.setCalory(rset.getDouble(4));
-
-				food.setCarbo(rset.getDouble(5));
-				food.setProtein(rset.getDouble(6));
-				food.setFat(rset.getDouble(7));
-				food.setSugar(rset.getDouble(8));
-				food.setNatrium(rset.getDouble(9));
-				food.setChole(rset.getDouble(10));
-				food.setFattyacid(rset.getDouble(11));
-				food.setTransfat(rset.getDouble(12));
-				food.setMaker(rset.getString(13));
-				food.setMaterial(rset.getString(14));
-				food.setImg(rset.getString(15));
-
-			}
-
-		} catch (SQLException e) {
-			e.printStackTrace();
-		} finally {
-			util.close(rset);
-			util.close(pstmt);
-			util.close(con);
-		}
-
-		return food;
+//		String sql = "select * from food where code = ? ";
+//		PreparedStatement pstmt = null;
+//		ResultSet rset = null;
+//		Food food = new Food();
+//		Connection con = null;
+//		try {
+//			con = util.getConnection();
+//		} catch (SQLException e1) {
+//			e1.printStackTrace();
+//		}
+//
+//		try {
+//			pstmt = con.prepareStatement(sql);
+//			pstmt.setInt(1, code);
+//			rset = pstmt.executeQuery();
+//
+//			if (rset.next()) {
+//				
+//				food.setCode(rset.getInt(1));
+//				food.setName(rset.getString(2));
+//				food.setSupportpereat(rset.getDouble(3));
+//				food.setCalory(rset.getDouble(4));
+//
+//				food.setCarbo(rset.getDouble(5));
+//				food.setProtein(rset.getDouble(6));
+//				food.setFat(rset.getDouble(7));
+//				food.setSugar(rset.getDouble(8));
+//				food.setNatrium(rset.getDouble(9));
+//				food.setChole(rset.getDouble(10));
+//				food.setFattyacid(rset.getDouble(11));
+//				food.setTransfat(rset.getDouble(12));
+//				food.setMaker(rset.getString(13));
+//				food.setMaterial(rset.getString(14));
+//				food.setImg(rset.getString(15));
+//
+//			}
+//
+//		} catch (SQLException e) {
+//			e.printStackTrace();
+//		} finally {
+//			util.close(rset);
+//			util.close(pstmt);
+//			util.close(con);
+//		}
+//
+//		return food;
+		return null;
 	}
 
 	/**
@@ -305,24 +176,4 @@ public class FoodDaoImpl implements FoodDao {
 		return null;
 	}
 
-	public static void main(String[] args) {
-		FoodDaoImpl dao = new FoodDaoImpl();
-		dao.loadData();
-		System.out.println(dao.search(1));
-		System.out.println("===========================material로 검색=================================");
-		print(dao.searchAll(new FoodPageBean("material", "감자전분", null, 0)));
-		System.out.println("===========================maker로 검색=================================");
-		print(dao.searchAll(new FoodPageBean("maker", "빙그레", null, 0)));
-		System.out.println("===========================name으로 검색=================================");
-		print(dao.searchAll(new FoodPageBean("name", "라면", null, 0)));
-		System.out.println("============================================================");
-		print(dao.searchAll(null));
-		System.out.println("============================================================");
-	}
-
-	public static void print(List<Food> foods) {
-		for (Food food : foods) {
-			System.out.println(food);
-		}
-	}
 }

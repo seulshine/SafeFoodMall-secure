@@ -155,18 +155,55 @@ text-align: center;
 	</body>
 <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
  <script type="text/javascript">
+    console.log(${code});
+    let wt;
+  	let cal;
+  	let carbo; 
+ 	let prot;
+ 	let fat;
+ 	let sugar;
+ 	let na;
+ 	let col;
+ 	let acid;
+ 	let trans;
+    $.ajax({
+		url : "/food/getFood/" + ${code},
+		type : 'get',
+
+		success : function(data) {
+			console.log(data);
+			wt = data.supportpereat;
+		  	cal = data.calory;
+		  	carbo = data.carbo; 
+		 	prot = data.protein;
+		 	fat = data.fat;
+		 	sugar = data.sugar;
+		 	na = data.natrium;
+		 	col = data.chole;
+		 	acid = data.fattyacid;
+		 	trans = data.transfat;
+		 	$("#wt").html(wt);
+		      $("#cal").html(cal);
+		      $("#carbo").html(carbo);
+		      $("#prot").html(prot);
+		      $("#fat").html(fat);
+		      $("#sugar").html(sugar);
+		      $("#na").html(na);
+		      $("#col").html(col);
+		      $("#acid").html(acid);
+		      $("#trans").html(trans);
+		      
+		      $("#image").html($("#image").html() + '<img src="' + data.img + '" width="80%">');
+		      $("#name").html(data.name);
+		      $("#maker").html(data.maker);
+		      $("#material").html(data.material);
+
+		},
+		error : function() {
+			alert("error");
+		}
+	});
     
- 
-  	let wt = sessionStorage.getItem('SERVING_WT');
-  	let cal = sessionStorage.getItem('NUTR_CONT1');
-  	let carbo = sessionStorage.getItem('NUTR_CONT2');
- 	let prot = sessionStorage.getItem('NUTR_CONT3');
- 	let fat = sessionStorage.getItem('NUTR_CONT4');
- 	let sugar = sessionStorage.getItem('NUTR_CONT5');
- 	let na = sessionStorage.getItem('NUTR_CONT6');
- 	let col = sessionStorage.getItem('NUTR_CONT7');
- 	let acid = sessionStorage.getItem('NUTR_CONT8');
- 	let trans = sessionStorage.getItem('NUTR_CONT9');
  	
  	let aller = ["대두","땅콩","우유","게","새우","참치","연어","쑥","소고기","닭고기","돼지고기","복숭아","민들레","계란흰자"];
 
@@ -196,10 +233,7 @@ text-align: center;
         chart.draw(data, options);
       }
 
-      $("#image").html($("#image").html() + '<img src="' + sessionStorage.getItem('img') + '" width="80%">');
-      $("#name").html(sessionStorage.getItem('name'));
-      $("#maker").html(sessionStorage.getItem('maker'));
-      $("#material").html(sessionStorage.getItem('material'));
+      
       
       let allerStr = "";
       for (var i = 0; i < aller.length; i++) {
@@ -209,20 +243,11 @@ text-align: center;
 		}
       $("#aller").html(allerStr);
       
-      $("#wt").html(wt);
-      $("#cal").html(cal);
-      $("#carbo").html(carbo);
-      $("#prot").html(prot);
-      $("#fat").html(fat);
-      $("#sugar").html(sugar);
-      $("#na").html(na);
-      $("#col").html(col);
-      $("#acid").html(acid);
-      $("#trans").html(trans);
+      
 		
     // 포스트에 넣어서 보낼 상품코드 설정
     let foodcode = sessionStorage.getItem('code');
     $("#code").val(foodcode);
-    console.log($("#code").val());
+//     console.log($("#code").val());
     </script>
 </html>

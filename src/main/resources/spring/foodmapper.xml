@@ -11,6 +11,10 @@
 	<select id="getAllFoods" resultType="food">
 		select * from food
 	</select>
+	
+	<select id="getFood" resultType="food" parameterType="integer">
+		select * from food where code=#{code}
+	</select>
 
   <resultMap type="food" id="foodDefault">
 	<result column='code' property="code"/>

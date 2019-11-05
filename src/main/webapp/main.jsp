@@ -149,18 +149,19 @@ footer {
 		}
 	});
 	
-	$.ajax({
-		url : "res/FoodNutritionInfo.json",
-		dataType : "json",
-		success : function(data) {
-			for (var i = 0; i < foods.length; i++) {
-				foods[i].nutr = data.response.body.items.item[i];
-			}
-		},
-		error : function() {
-			alert("error");
-		}
-	});
+// 	$.ajax({
+// 		url : "res/FoodNutritionInfo.json",
+// 		dataType : "json",
+// 		success : function(data) {
+// 			for (var i = 0; i < foods.length; i++) {
+// 				foods[i].nutr = data.response.body.items.item[i];
+// 			}
+
+// 		},
+// 		error : function() {
+// 			alert("error");
+// 		}
+// 	});
 
 	
 	$("#sortbtn").on("click", function() {
@@ -276,32 +277,31 @@ footer {
 		}
 	});
 
-	function goDetail(index) {
-		result.forEach(function(elt, idx) {
-			if (idx == index) {
+// 	function goDetail(index) {
+// 		result.forEach(function(elt, idx) {
+// 			if (idx == index) {
 				
-				sessionStorage.setItem('code', elt.code);
-				sessionStorage.setItem('name', elt.name);
-				sessionStorage.setItem('maker', elt.maker);
-				sessionStorage.setItem('material', elt.material);
-				sessionStorage.setItem('img', elt.img);
-				sessionStorage.setItem('SERVING_WT', elt.nutr.SERVING_WT);
-				sessionStorage.setItem('NUTR_CONT1', elt.nutr.NUTR_CONT1);
-				sessionStorage.setItem('NUTR_CONT2', elt.nutr.NUTR_CONT2);
-				sessionStorage.setItem('NUTR_CONT3', elt.nutr.NUTR_CONT3);
-				sessionStorage.setItem('NUTR_CONT4', elt.nutr.NUTR_CONT4);
-				sessionStorage.setItem('NUTR_CONT5', elt.nutr.NUTR_CONT5);
-				sessionStorage.setItem('NUTR_CONT6', elt.nutr.NUTR_CONT6);
-				sessionStorage.setItem('NUTR_CONT7', elt.nutr.NUTR_CONT7);
-				sessionStorage.setItem('NUTR_CONT8', elt.nutr.NUTR_CONT8);
-				sessionStorage.setItem('NUTR_CONT9', elt.nutr.NUTR_CONT9);
-			}
-		});
-	}
-// 	console.log(result);
+// 				sessionStorage.setItem('code', elt.code);
+// 				sessionStorage.setItem('name', elt.name);
+// 				sessionStorage.setItem('maker', elt.maker);
+// 				sessionStorage.setItem('material', elt.material);
+// 				sessionStorage.setItem('img', elt.img);
+// 				sessionStorage.setItem('SERVING_WT', elt.nutr.SERVING_WT);
+// 				sessionStorage.setItem('NUTR_CONT1', elt.nutr.NUTR_CONT1);
+// 				sessionStorage.setItem('NUTR_CONT2', elt.nutr.NUTR_CONT2);
+// 				sessionStorage.setItem('NUTR_CONT3', elt.nutr.NUTR_CONT3);
+// 				sessionStorage.setItem('NUTR_CONT4', elt.nutr.NUTR_CONT4);
+// 				sessionStorage.setItem('NUTR_CONT5', elt.nutr.NUTR_CONT5);
+// 				sessionStorage.setItem('NUTR_CONT6', elt.nutr.NUTR_CONT6);
+// 				sessionStorage.setItem('NUTR_CONT7', elt.nutr.NUTR_CONT7);
+// 				sessionStorage.setItem('NUTR_CONT8', elt.nutr.NUTR_CONT8);
+// 				sessionStorage.setItem('NUTR_CONT9', elt.nutr.NUTR_CONT9);
+// 			}
+// 		});
+// 	}
 
 	function showProduct(elt, index) {
-		console.log(elt.img);
+
 		$("#getList").html(
 				$("#getList").html()
 						+ '<div id="item'+ index +'" class="row"></div><hr>');
@@ -324,8 +324,7 @@ footer {
 		$("#itemTxt" + index)
 				.html(
 						$("#itemTxt" + index).html()
-								+ '<p><a class="btn btn-info" href="http://localhost:8080/detail.jsp" role="submit" onclick="goDetail('
-								+ index + ');">Viewdetails&raquo;</a></p>');
+								+ '<p><a class="btn btn-info" href="detail.do'+ '?code=' + elt.code + '">Viewdetails&raquo;</a></p>');
 
 	}
 </script>

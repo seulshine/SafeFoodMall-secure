@@ -112,53 +112,8 @@ public class FoodDaoImpl implements FoodDao {
 	 */
 	public Food search(int code) {
 		// 코드에 맞는 식품 검색하여 리턴
-//		String sql = "select * from food where code = ? ";
-//		PreparedStatement pstmt = null;
-//		ResultSet rset = null;
-//		Food food = new Food();
-//		Connection con = null;
-//		try {
-//			con = util.getConnection();
-//		} catch (SQLException e1) {
-//			e1.printStackTrace();
-//		}
-//
-//		try {
-//			pstmt = con.prepareStatement(sql);
-//			pstmt.setInt(1, code);
-//			rset = pstmt.executeQuery();
-//
-//			if (rset.next()) {
-//				
-//				food.setCode(rset.getInt(1));
-//				food.setName(rset.getString(2));
-//				food.setSupportpereat(rset.getDouble(3));
-//				food.setCalory(rset.getDouble(4));
-//
-//				food.setCarbo(rset.getDouble(5));
-//				food.setProtein(rset.getDouble(6));
-//				food.setFat(rset.getDouble(7));
-//				food.setSugar(rset.getDouble(8));
-//				food.setNatrium(rset.getDouble(9));
-//				food.setChole(rset.getDouble(10));
-//				food.setFattyacid(rset.getDouble(11));
-//				food.setTransfat(rset.getDouble(12));
-//				food.setMaker(rset.getString(13));
-//				food.setMaterial(rset.getString(14));
-//				food.setImg(rset.getString(15));
-//
-//			}
-//
-//		} catch (SQLException e) {
-//			e.printStackTrace();
-//		} finally {
-//			util.close(rset);
-//			util.close(pstmt);
-//			util.close(con);
-//		}
-//
-//		return food;
-		return null;
+		return session.selectOne(foodnamespace + "getFood", code);
+
 	}
 
 	/**

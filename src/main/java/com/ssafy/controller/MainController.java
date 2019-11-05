@@ -24,8 +24,8 @@ public class MainController extends HttpServlet {
 //		map.put("/regist.do", new RegistController());
 //		map.put("/update.do", new UpdateController());
 //		map.put("/delete.do", new DeleteController());
-		map.put("/food.do", new FoodController());
-		map.put("/insertHistory.do", new HistoryInsertController());
+//		map.put("/food.do", new FoodController());
+//		map.put("/insertHistory.do", new HistoryInsertController());
 	}
 
 	// 모든 요청은 여기에서

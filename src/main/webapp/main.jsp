@@ -137,10 +137,12 @@ footer {
 
 	let foods = {};
 	$.ajax({
-		url : "res/foodInfo.json",
-		dataType : "json",
+		url : "/food/getAllFoods",
+		type : 'get',
+
 		success : function(data) {
 			foods = data;
+			console.log(foods);
 		},
 		error : function() {
 			alert("error");
@@ -282,7 +284,7 @@ footer {
 				sessionStorage.setItem('name', elt.name);
 				sessionStorage.setItem('maker', elt.maker);
 				sessionStorage.setItem('material', elt.material);
-				sessionStorage.setItem('img', elt.image);
+				sessionStorage.setItem('img', elt.img);
 				sessionStorage.setItem('SERVING_WT', elt.nutr.SERVING_WT);
 				sessionStorage.setItem('NUTR_CONT1', elt.nutr.NUTR_CONT1);
 				sessionStorage.setItem('NUTR_CONT2', elt.nutr.NUTR_CONT2);
@@ -299,6 +301,7 @@ footer {
 // 	console.log(result);
 
 	function showProduct(elt, index) {
+		console.log(elt.img);
 		$("#getList").html(
 				$("#getList").html()
 						+ '<div id="item'+ index +'" class="row"></div><hr>');
@@ -306,7 +309,7 @@ footer {
 				$("#item" + index).html()
 						+ '<div id="itemImg'+ index +'" class="col-md-3">');
 		$("#itemImg" + index).html(
-				$("#itemImg" + index).html() + '<img src="' + elt.image
+				$("#itemImg" + index).html() + '<img src="' +elt.img
 						+ '"  width="50%">');
 		$("#item" + index).html(
 				$("#item" + index).html()
@@ -321,7 +324,7 @@ footer {
 		$("#itemTxt" + index)
 				.html(
 						$("#itemTxt" + index).html()
-								+ '<p><a class="btn btn-info" href="http://localhost:8080/safefood_web_front/detail.jsp" role="submit" onclick="goDetail('
+								+ '<p><a class="btn btn-info" href="http://localhost:8080/detail.jsp" role="submit" onclick="goDetail('
 								+ index + ');">Viewdetails&raquo;</a></p>');
 
 	}

@@ -24,6 +24,14 @@ public class UserDaoImpl implements UserDao{
 
 	@Autowired
 	SqlSession session;
+	
+	private static UserDaoImpl dao = new UserDaoImpl();
+	public static UserDaoImpl getDao() {
+		return dao;
+	}
+	public UserDaoImpl() {
+//		loadData(session);
+	}
 
 	private final String namespace = "com.ssafy.mapper.UserMapper.";
 	

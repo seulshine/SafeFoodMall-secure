@@ -78,7 +78,7 @@ text-align: center;
 					</tr>
 				</table>
 				<div class="row">
-					<form method="post" action="insertHistory.do">
+					<form method="post" action="history/insertHistory">
 						<div class="col-md-3">
 							<label for="search">Quantity</label> <input type="number"
 								id="quantity" name="quantity" class="form-control">
@@ -92,12 +92,7 @@ text-align: center;
 					</form>
 				</div>
 				<br>
-<!-- 				<div class="btn-group" role="group" aria-label="..."> -->
-<!-- 					<button type="button" class="btn btn-default"> -->
-<!-- 						<span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span> -->
-<!-- 						찜 -->
-<!-- 					</button> -->
-<!-- 				</div> -->
+
 
 			</div>
 		</div>

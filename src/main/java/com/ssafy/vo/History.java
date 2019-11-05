@@ -1,5 +1,8 @@
 package com.ssafy.vo;
 
+import lombok.Data;
+
+@Data
 public class History {
 	private int historyNo;
 	private String id;

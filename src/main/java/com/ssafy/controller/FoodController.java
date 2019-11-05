@@ -1,18 +1,10 @@
 package com.ssafy.controller;
 
 import java.io.IOException;
-import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-
-import org.springframework.beans.factory.annotation.Autowired;
-
-import com.google.gson.Gson;
-import com.ssafy.dao.FoodDao;
-import com.ssafy.dao.FoodDaoImpl;
-import com.ssafy.vo.Food;
 
 public class FoodController implements Controller {
 

@@ -324,7 +324,7 @@ footer {
 		$("#itemTxt" + index)
 				.html(
 						$("#itemTxt" + index).html()
-								+ '<p><a class="btn btn-info" href="detail.do'+ '?code=' + elt.code + '">Viewdetails&raquo;</a></p>');
+								+ '<p><a class="btn btn-info" href="detail.do'+ '?code=' + elt.code + '&id=' + '${LoginUser.id }' +'">Viewdetails&raquo;</a></p>');
 
 	}
 </script>

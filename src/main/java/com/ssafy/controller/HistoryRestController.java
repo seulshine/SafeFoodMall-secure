@@ -2,42 +2,74 @@ package com.ssafy.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-
+import org.springframework.ui.Model;
 import com.ssafy.service.FoodService;
 import com.ssafy.service.HistoryService;
 import com.ssafy.vo.Food;
 import com.ssafy.vo.History;
+import com.ssafy.vo.User;
 
 import lombok.extern.slf4j.Slf4j;
 
-@RestController
-@RequestMapping("/history")
+@Controller
 @Slf4j
+@CrossOrigin(value="*")
 public class HistoryRestController {
 	
 	
 	@Autowired
 	HistoryService hservice;
 	
-	
-	@PostMapping("/insertHistory")
-	public Object insertHistory(@RequestBody History history) {
-		log.trace("insertHistory is called");
+	@GetMapping("updateHistory")
+	public String getLoginForm(History history, Model model) {
 		try {
-			
-			int result = hservice.insertHistory(history);
-			return new ResponseEntity<Integer>(result, HttpStatus.OK);
+			int result = hservice.searchHistory(history);
+			model.addAttribute("count", result); // 여기서 말고 이따 영철오빠꺼에 추가
+		}catch (Exception e) {
+		
+		}
+		return "redirect:detail.jsp";
+	}
+	
+	@PostMapping("updateHistory")
+	public String updateHistory(History history, HttpSession session) {
+		log.trace("updateHistory is called");
+		System.out.println(history.toString());
+		try {
+			//System.out.println(history.toString());
+			int result = hservice.updateHistory(history);
+			if(result > 0) {
+
+				System.out.println(result + " : update");
+			} else {
+				result = hservice.insertHistory(history); // 업데이트 할게 없다면 insert
+				System.out.println(result + " : insert");
+			}
+			return "redirect:detail.jsp";
 		} catch (Exception e) {
 			log.error("getAllFoods", e);
-			throw e;		// 얘를 호출한놈은 spring. 이걸 톰캣이 클라이언트한테 에러로 보낸다.
+			//throw e;		// 얘를 호출한놈은 spring. 이걸 톰캣이 클라이언트한테 에러로 보낸다.
+			try {
+				int result = hservice.insertHistory(history); // 업데이트 할게 없다면 insert
+				System.out.println(result + " : insert");
+				return "redirect:detail.jsp";
+			} catch(Exception err) {
+				throw e;
+			}
 		}
+		
 		
 	}
 }

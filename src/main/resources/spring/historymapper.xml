@@ -6,4 +6,11 @@
     <insert id="insertHistory" parameterType="history">
         INSERT INTO HISTORY(ID, CODE, COUNT) VALUES(#{id}, #{code}, #{count})
     </insert>
+    <update id="updateHistory" parameterType="history">
+    	update history set count = #{count} where id= #{id} and code = #{code}
+    </update>
+    
+    <select id="selectHistory" resultType="int">
+    	select count from history where id= #{id} and code = #{code}
+    </select>
 </mapper>

@@ -5,6 +5,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.ssafy.vo.History;
+import com.ssafy.vo.User;
 
 @Repository
 public class HistoryDao {
@@ -15,14 +16,20 @@ public class HistoryDao {
 	private final String namespace = "com.ssafy.HistoryMapper.";
 	
 	
-//	private static HistoryDao instance = new HistoryDao();
-//	private HistoryDao() {}
-//	public static HistoryDao getInstance() {
-//		return instance;
-//	}
-	
 	public int insertHistory(History history) {
 		String stmt = namespace + "insertHistory";
 		return session.insert(stmt, history);
 	}
+	
+	public int updateHistory(History history) {
+		String stmt = namespace + "updateHistory";
+		return session.update(stmt, history);
+	}
+	
+	public int searchHistory(History history) {
+		String stmt = namespace + "selectHistory";
+		return session.selectOne(stmt, history);
+		
+	}
+	
 }

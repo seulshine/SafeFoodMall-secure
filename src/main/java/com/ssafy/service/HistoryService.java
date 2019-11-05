@@ -15,4 +15,12 @@ public class HistoryService {
 	public int insertHistory(History history) {
 		return dao.insertHistory(history);
 	}
+	
+	public int updateHistory(History history) {
+		return dao.updateHistory(history);
+	}
+	
+	public int searchHistory(History history) {
+		return dao.searchHistory(history);
+	}
 }

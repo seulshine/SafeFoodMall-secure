@@ -16,7 +16,7 @@
 						<label for="id" class="sr-only">아이디</label> 
 						<input type="text" name="id" id="id" class="form-control" placeholder="아이디" required="" autofocus=""> 
 						<label for="pw" class="sr-only">비밀번호</label>
-						<input type="password" name="pw" id="pw" class="form-control" placeholder="비밀번호" required="">
+						<input type="password" name="password" id="password" class="form-control" placeholder="비밀번호" required="">
 					</div>
 					<div class="modal-footer">
 						<input type="submit" value="login">

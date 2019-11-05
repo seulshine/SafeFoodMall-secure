@@ -20,31 +20,17 @@ import com.ssafy.vo.User;
 
 
 @Repository
-public class UserDaoImpl {
+public class UserDaoImpl implements UserDao{
 
 	@Autowired
 	SqlSession session;
-	
-	private static UserDaoImpl dao = new UserDaoImpl();
-	public static UserDaoImpl getDao() {
-		return dao;
-	}
-	private UserDaoImpl() {
-//		loadData(session);
-	}
 
-	DBUtil util = DBUtil.getUtil();
-	List<User> userlist = new ArrayList<User>();
 	private final String namespace = "com.ssafy.mapper.UserMapper.";
 	
 	/**
 	 * 사용자 데이터를 DB에서 읽어온다.
 	 */
-	public void loadData() {
-		String stmt = namespace + "selectAll";
-		userlist = session.selectList(stmt);
-		
-	}
+
 
 	public int insertUser(User user){
 		String stmt = namespace + "insert";
@@ -77,20 +63,6 @@ public class UserDaoImpl {
 		//session.commit();
 	}
 
-	public static void main(String[] args) {
-		UserDaoImpl dao = new UserDaoImpl();
-//		dao.loadData();
-//		System.out.println(dao.search(1));
-//		System.out.println("===========================material로 검색=================================");
-//		print(dao.searchAll(new FoodPageBean("material", "감자전분", null, 0)));
-//		System.out.println("===========================maker로 검색=================================");
-//		print(dao.searchAll(new FoodPageBean("maker", "빙그레", null, 0)));
-//		System.out.println("===========================name으로 검색=================================");
-//		print(dao.searchAll(new FoodPageBean("name", "라면", null, 0)));
-//		System.out.println("============================================================");
-//		print(dao.searchAll(null));
-//		System.out.println("============================================================");
-	}
 
 	public static void print(List<Food> foods) {
 		for (Food food : foods) {

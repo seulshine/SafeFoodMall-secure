@@ -62,16 +62,16 @@ button {
 <%-- 					value="${member.password }" --%>
 					
 					<label for="pw"><b>비밀번호 *</b></label> 
-					<input type="password" name="pw" id="pw" class="form-control" value="${LoginUser.password }" required="" autofocus=""> <br>
+					<input type="password" name="password" id="password" class="form-control" value="${LoginUser.password }" required="" autofocus=""> <br>
 					
 					<label for="name"><b>이름 *</b></label> 
 					<input type="text" name="name" id="name" class="form-control" value="${LoginUser.name }" required="" autofocus=""> <br> 
 					
 					<label for="addr"><b>주소*</b></label> 
-					<input type="text" name="addr" id="addr" class="form-control" value="${LoginUser.address }" required autofocus=""> <br> 
+					<input type="text" name="address" id="address" class="form-control" value="${LoginUser.address }" required autofocus=""> <br> 
 					
 					<label for="tel"><b>전화번호 *</b></label> 
-					<input type="text" name="tel" id="tel" class="form-control" value="${LoginUser.phone }">
+					<input type="text" name="phone" id="phone" class="form-control" value="${LoginUser.phone }">
 					<div class="panel panel-info">
 						<div class="panel-heading">
 							<h5>Check!</h5>

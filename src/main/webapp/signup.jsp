@@ -54,16 +54,16 @@ footer {
 					<input type="text" name="id" id="id" class="form-control" placeholder="아이디" required autofocus=""> <br> 
 					
 					<label for="pw"><b>비밀번호 *</b></label> 
-					<input type="password" name="pw" id="pw" class="form-control" placeholder="password" required="" autofocus=""> <br>
+					<input type="password" name="password" id="password" class="form-control" placeholder="password" required="" autofocus=""> <br>
 					
 					<label for="name"><b>이름 *</b></label> 
 					<input type="text" name="name" id="name" class="form-control" placeholder="이름" required="" autofocus=""> <br> 
 					
 					<label for="addr"><b>주소*</b></label> 
-					<input type="text" name="addr" id="addr" class="form-control" placeholder="주소" required autofocus=""> <br> 
+					<input type="text" name="address" id="address" class="form-control" placeholder="주소" required autofocus=""> <br> 
 					
 					<label for="tel"><b>전화번호 *</b></label> 
-					<input type="text" name="tel" id="tel" class="form-control" placeholder="000-0000-0000">
+					<input type="text" name="phone" id="phone" class="form-control" placeholder="000-0000-0000">
 					
 					<br> <label for="inputal"><b>알레르기</b></label>
 					<div class="panel panel-info">
@@ -91,12 +91,12 @@ footer {
 
 					</div>
 					<br>
-					<button type="submit" class="btn btn-primary">등록</button>
+					<input type="submit" class="btn btn-primary" id="signUp" value="등록">
 				</form>
 			</div>
 		</div>
 	</div>
-
 	<jsp:include page="/bottom.jsp" />
 </body>
+
 </html>

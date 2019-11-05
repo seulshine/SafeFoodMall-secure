@@ -71,4 +71,4 @@
 
 
 #### UML
-![SAFE FOOD UML](/capture/safefood_spring_uml.jpg "uml")
+![SAFE FOOD UML](/capture/safefood_spring_uml.JPG "uml")

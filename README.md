@@ -65,16 +65,10 @@
 ![상세식품검색2](/capture/detail2.PNG "detail2")
 
 
-#### 알고리즘 선택정렬 : 이름순 정렬
-![상세식품검색1](/capture/이름정순.PNG "namesort_desc")
-![상세식품검색2](/capture/이름역순.PNG "namesort_asc")
-![상세식품검색2](/capture/selectsort.PNG "selectsort")
-
-#### 알고리즘 버블정렬 : 칼로리순 정렬
-![상세식품검색1](/capture/칼로리정순.PNG "calsort_desc")
-![상세식품검색2](/capture/칼로리역순.PNG "calsort_asc")
-![상세식품검색2](/capture/bubblesort.PNG "bubblesort")
-
 #### 음식 섭취 내역 저장
 ![음식섭취내역저장1](/capture/eatinghistory.png "eatinghistory")
 ![음식섭취내역저장2](/capture/eatinghistoryDB.png "eatinghistoryDB")
+
+
+#### UML
+![SAFE FOOD UML](/capture/safefood_spring_uml.jpg "uml")

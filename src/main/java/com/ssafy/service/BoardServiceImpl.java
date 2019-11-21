@@ -43,6 +43,13 @@ public class BoardServiceImpl implements BoardService{
 	public List<Comment> searchCommentsByNo(int no) {
 		return bdao.searchCommentsByNo(no);
 	}
+	
+	@Override
+	public List<Board> searchAllBoard() {
+		return bdao.searchAllBoard();
+	}
+	
+	
 
 	@Override
 	public int insertComment(Comment comment) {
@@ -55,13 +62,14 @@ public class BoardServiceImpl implements BoardService{
 	}
 
 	@Override
-	public Comment searchComment(Comment comment) {
-		return cdao.searchComment(comment);
+	public List<Comment> searchComment(String id){
+		return cdao.searchComment(id);
 	}
 
 	@Override
 	public int deleteComment(Comment comment) {
 		return cdao.deleteComment(comment);
 	}
+
 
 }

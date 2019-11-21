@@ -10,6 +10,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 public class Comment {
+	int comm_no;
 	int board_no;
 	String id;
 	Date regdate;

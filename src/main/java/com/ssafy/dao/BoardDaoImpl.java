@@ -45,6 +45,11 @@ public class BoardDaoImpl implements BoardDao {
 		return session.selectList(ns+"searchCommentsByNo", no);
 	}
 
+	@Override
+	public List<Board> searchAllBoard() {
+		return session.selectList(ns+"searchAllBoard");
+	}
+
 
 
 }

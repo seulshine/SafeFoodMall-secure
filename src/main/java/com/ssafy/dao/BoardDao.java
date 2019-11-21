@@ -13,5 +13,5 @@ public interface BoardDao {
 	public int deleteBoard(int no);
 	
 	public List<Comment> searchCommentsByNo (int no);
-	
+	public List<Board> searchAllBoard();
 }

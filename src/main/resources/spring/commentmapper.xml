@@ -13,10 +13,10 @@
 	  </update>
 	  
 	  <delete id="deleteComment" parameterType='comment'>
-	  	delete from comment where id=#{id} and board_no=#{board_no}
+	  	delete from comment where id=#{id} and board_no=#{board_no} and comm_no =#{comm_no}
 	  </delete>
 	  
-	  <select id="searchComment" parameterType='comment' resultType='comment'>
-	  	select * from comment where no=#{no} and id=#{id}
+	  <select id="searchComment" parameterType='string' resultType='comment'>
+	  	select * from comment where id=#{id}
 	  </select>
   </mapper>

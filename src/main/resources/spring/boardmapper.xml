@@ -22,4 +22,9 @@
 	  	select * from comment where board_no=#{no}
 	  </select>
 	  
+	  
+	  <select id="searchAllBoard" resultType='board'>
+	  	select * from board
+	  </select>
+	  
   </mapper>

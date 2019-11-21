@@ -1,5 +1,7 @@
 package com.ssafy.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -24,8 +26,8 @@ public class CommentDaoImpl implements CommentDao {
 	}
 
 	@Override
-	public Comment searchComment(Comment comment) {
-		return session.selectOne(ns+"searchComment", comment);
+	public List<Comment> searchComment(String id) {
+		return session.selectList(ns+"searchComment", id);
 	}
 
 	@Override

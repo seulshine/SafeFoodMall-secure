@@ -117,6 +117,23 @@ public class BoardRestController {
 	}
 	
 	
+	
+	@GetMapping("/searchAllBoard")
+	@ApiOperation(value="모든 게시판 글을 반환한다.", response=List.class) // response 는 담고 있는 객체 타입
+	public ResponseEntity<Object> searchAllBoard() {
+		log.trace("searchAllBoard");
+		
+		try {
+			List<Board> boards = service.searchAllBoard();
+			return new ResponseEntity<Object>(boards, HttpStatus.OK);
+		} catch(RuntimeException e) {
+			log.error("searchCommentsByNo", e);
+			throw e; 
+		}
+	
+	}
+	
+	
 	@PostMapping("/insertComment") 
 	@ApiOperation(value="새로운 댓글 등록") // response 는 담고 있는 객체 타입
 	public ResponseEntity<Object> insertComment(@RequestBody Comment comment) {
@@ -152,13 +169,13 @@ public class BoardRestController {
 	
 	
 	
-	@GetMapping("/searchComment")
-	@ApiOperation(value="선택한 댓글을 반환한다") // 마이페이지 댓글 확인
-	public ResponseEntity<Object> searchComment(@RequestBody Comment comment) {
+	@GetMapping("/searchComment/{id}")
+	@ApiOperation(value="회원의 모든 댓글을 반환한다") // 마이페이지 댓글 확인
+	public ResponseEntity<Object> searchComment(@PathVariable String id) {
 		log.trace("searchComment");
 		
 		try {
-			Comment result = service.searchComment(comment);
+			List<Comment> result = service.searchComment(id);
 			return new ResponseEntity<Object>(result, HttpStatus.OK);
 		} catch(RuntimeException e) {
 			log.error("searchComment", e);

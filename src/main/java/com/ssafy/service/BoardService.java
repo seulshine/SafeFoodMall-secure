@@ -15,6 +15,7 @@ public interface BoardService {
 	
 	public int insertComment(Comment comment);
 	public int updateComment(Comment comment);
-	public Comment searchComment(Comment comment);
+	public List<Comment> searchComment(String id);
 	public int deleteComment(Comment comment);
+	public List<Board> searchAllBoard();
 }

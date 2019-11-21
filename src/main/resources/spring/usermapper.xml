@@ -15,18 +15,18 @@
   	select * from user
   </select>
   
-  <select id="insert" resultType='user'>
+  <insert id="insert" parameterType='user'>
   	insert into user (id, password, name, address, phone, allergy)
   				values(#{id}, #{password}, #{name}, #{address}, #{phone}, #{allergy})
-  </select>
+  </insert>
   
-  <select id="updateUser" resultType='user'>
+  <update id="updateUser" parameterType='user'>
   	UPDATE user SET password=#{password}, name=#{name}, address=#{address}, phone=#{phone}, allergy=#{allergy} WHERE id=#{id}
-  </select>
+  </update>
   
-  <select id="delete" resultType='user'>
+  <delete id="delete" parameterType='string'>
   	delete from user where id=#{id}
-  </select>
+  </delete>
   
 <!--   <select id="selectDetail" parameterType="string"> -->
 <!--   	select u.*, h.* -->

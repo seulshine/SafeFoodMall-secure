@@ -11,12 +11,16 @@
 		<typeAlias type="com.ssafy.vo.Food"   		alias="food"/>
 		<typeAlias type="com.ssafy.vo.History"   		alias="history"/>
 		<typeAlias type="com.ssafy.vo.User"   		alias="user"/>
+		<typeAlias type="com.ssafy.vo.Board"   		alias="board"/>
+		<typeAlias type="com.ssafy.vo.Comment"   		alias="comment"/>
 	</typeAliases>
 
 	<mappers>
 		 <mapper resource="spring/foodmapper.xml" />
 		 <mapper resource="spring/usermapper.xml" />
 		 <mapper resource="spring/historymapper.xml" />
+		 <mapper resource="spring/boardmapper.xml" />
+		 <mapper resource="spring/commentmapper.xml" />
 	</mappers>
 </configuration>
 

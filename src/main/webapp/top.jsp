@@ -52,7 +52,7 @@
 			<div id="navbar" class="navbar-collapse collapse"
 				aria-expanded="false" style="height: 1px;">
 				<ul class="nav navbar-nav">
-					<li class="active"><a href="#">공지사항</a></li>
+					<li class="active"><a href='board.jsp'>공지사항</a></li>
 					<li><a href="#">상품 정보</a></li>
 					<li><a href="#">베스트 섭취 정보</a></li>
 					<li><a href="#">내 섭취 정보</a></li>
@@ -70,4 +70,5 @@
 	alert("${msg}");
 	<c:remove var="msg"/>
 </c:if>
+
 </script>

@@ -137,7 +137,7 @@ footer {
 
 	let foods = {};
 	$.ajax({
-		url : "/food/getAllFoods",
+		url : "/safefoodvue/food/getAllFoods",
 		type : 'get',
 
 		success : function(data) {

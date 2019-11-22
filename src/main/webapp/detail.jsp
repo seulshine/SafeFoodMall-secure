@@ -168,7 +168,7 @@ text-align: center;
  	let acid;
  	let trans;
     $.ajax({
-		url : "/food/getFood/" + ${code},
+		url : "/safefoodvue/food/getFood/" + ${code},
 		type : 'get',
 
 		success : function(data) {

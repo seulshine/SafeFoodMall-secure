@@ -39,6 +39,7 @@
 						<li id="Loginout">
 						<button type="button" class="btn btn-link" name="logout" onclick="location.href='logout.do'">Log out</button></li>
 						<li id="sign"><button type="button" class="btn btn-link" onclick="location.href='modify.jsp'">modify</button></li>
+						<li id="cart"><button type="button" class="btn btn-link"  onclick="location.href='cart.jsp'">cart</button></li>
 					</c:otherwise>
 				</c:choose>
 				</ul>

@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-    pageEncoding="UTF-8"%>
-    
+	pageEncoding="UTF-8"%>
+
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -18,33 +18,38 @@
 <!-- jQuery 추가 -->
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-	
+
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
 <style>
 @import url(https://fonts.googleapis.com/css?family=Open+Sans:400,700);
-.container{
+
+.container {
 	margin-bottom: 10px;
 }
-#navbar{
-	padding-right:20px;
+
+#navbar {
+	padding-right: 20px;
 }
-footer{
+
+footer {
 	background: #f0f0f0;
-	padding: 5px 15px 10px 15px; 
+	padding: 5px 15px 10px 15px;
 }
-#nut{
+
+#nut {
 	margin-top: 50px;
 }
 
-#info th{
-text-align: center;
+#info th {
+	text-align: center;
 	width: 80px;
 }
-#nutr th{
-text-align: center;
+
+#nutr th {
+	text-align: center;
 	width: 100px;
 }
 </style>
@@ -54,10 +59,10 @@ text-align: center;
 
 	<div class="container">
 		<h2 class="text-center">제품 정보</h2>
-		<br><br>
+		<br>
+		<br>
 		<div class="row">
-			<div id="image" class="col-md-3">
-			</div>
+			<div id="image" class="col-md-3"></div>
 			<div class="col-md-9">
 				<table id="info" class="table">
 					<tr>
@@ -80,18 +85,35 @@ text-align: center;
 				<div class="row">
 					<form method="post" action="updateHistory">
 						<div class="col-md-3">
-							<label for="search">Quantity</label> <input type="number"
-								id="count" name="count" class="form-control" value="${count}">
-								<br>
+							<label for="search">섭취내역</label> <input type="number" id="count"
+								name="count" class="form-control" value="${count}"> <br>
 							<input type="hidden" id="code" name="code" value="${code}">
 							<input type="hidden" id="id" name="id" value="${LoginUser.id }">
-							<button id="add" type="submit" class="btn btn-default" onclick="addfood">
-								<span class="glyphicon glyphicon-triangle-top" aria-hidden="true"></span>
-								추가
+							<button id="add" type="submit" class="btn btn-default"
+								onclick="addfood">
+								<span class="glyphicon glyphicon-triangle-top"
+									aria-hidden="true"></span> 추가
 							</button>
 						</div>
 					</form>
+					<form method="post" action="updateCart">
+						<div class="col-md-3">
+							<label for="search">장바구니</label> <input type="number" id="qty"
+								name="qty" class="form-control" value="${qty}"> 
+								남은 재고  <input type="text" value="${instock}" readonly><br>
+							<input type="hidden" id="code" name="code" value="${code}">
+							<input type="hidden" id="id" name="id" value="${LoginUser.id }">
+							<button id="add" type="submit" class="btn btn-default"
+								onclick="addCart">
+								<span class="glyphicon glyphicon-triangle-top"
+									aria-hidden="true"></span> 추가
+							</button>
+						</div>
+					</form>
+					
 				</div>
+			
+			
 				<br>
 
 
@@ -102,9 +124,10 @@ text-align: center;
 	<div class="container" id="nut">
 		<h4>영양 정보</h4>
 		<div class="row">
-			<div class="col-md-6" id="donutchart" style="width: 550px; height: 500px;" ></div>
+			<div class="col-md-6" id="donutchart"
+				style="width: 550px; height: 500px;"></div>
 			<div class="col-md-6">
-			
+
 				<table id="nutr" class="table">
 					<tr>
 						<th>일일 제공량</th>
@@ -149,13 +172,14 @@ text-align: center;
 				</table>
 			</div>
 		</div>
-		
+
 	</div>
 
 	<jsp:include page="/bottom.jsp" />
-	</body>
-<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
- <script type="text/javascript">
+</body>
+<script type="text/javascript"
+	src="https://www.gstatic.com/charts/loader.js"></script>
+<script type="text/javascript">
     console.log(${code});
     let wt;
   	let cal;

@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.ssafy.CartMapper">
+    <insert id="insertCart" parameterType="cart">
+        INSERT INTO CART(ID, CODE, QTY) VALUES(#{id}, #{code}, #{qty})
+    </insert>
+    <update id="updateCart" parameterType="cart">
+    	update cart set qty = #{qty} where id= #{id} and code = #{code}
+    </update>
+    
+    <select id="selectCart" parameterType="cart" resultType="cart">
+    	select * from cart where id= #{id} and code = #{code}
+    </select>
+    
+    <select id="searchAllByUser" parameterType="string" resultType="cart">
+    	select c.id, c.code, f.name, c.qty, i.price from cart c, inventory i, food f where c.code=i.code and i.code = f.code and c.id= #{id}
+    </select>
+    <delete id="deleteCart" parameterType="cart">
+    	delete from cart where id= #{id} and code = #{code}
+    </delete>
+    
+    
+    <select id="searchInStock" parameterType="int" resultType="int">
+    	select instock from inventory where code = #{code}
+    </select>
+    
+    
+  
+</mapper>

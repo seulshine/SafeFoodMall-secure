@@ -84,7 +84,7 @@ public class BoardRestController {
 	
 	
 	
-	@DeleteMapping("/deleteBoard/{id}")
+	@DeleteMapping("/deleteBoard/{no}")
 	@ApiOperation(value="선택한 글을 삭제한다.")
 	public ResponseEntity<Object> deleteBoard(@PathVariable int no) {
 		log.trace("deleteBoard: {}", no);

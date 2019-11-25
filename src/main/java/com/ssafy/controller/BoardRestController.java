@@ -28,7 +28,7 @@ import lombok.extern.slf4j.Slf4j;
 @RestController // 화면에는 관심이 없고 데이터 전송에만 관심이 있다!!
 @RequestMapping("/api")
 @Slf4j // lombok
-@CrossOrigin({"*"})
+@CrossOrigin(origins="*")
 public class BoardRestController {
 	
 	@Autowired

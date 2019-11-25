@@ -33,6 +33,8 @@ import com.ssafy.service.UserServiceImpl;
 import com.ssafy.util.MailUtil;
 import com.ssafy.vo.User;
 
+import io.jsonwebtoken.Jwts;
+import io.jsonwebtoken.SignatureAlgorithm;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 
@@ -61,6 +63,13 @@ public class UserController {
 				if (selected.getPassword().equals(user.getPassword())) {
 					session.setAttribute("LoginUser", selected);
 					session.setAttribute("msg", "로그인이 되었습니다.");
+					
+//					String jwtString = Jwts.builder()
+//										.setHeaderParam("typ", "JWT")
+//										.setSubject(selected.getId())
+//										.signWith(SignatureAlgorithm.HS512, "ssafy")
+//										.compact();
+					
 					return "redirect:main.jsp";
 				} else {
 					session.setAttribute("msg", "비밀번호가 틀렸습니다.");

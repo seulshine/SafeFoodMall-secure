@@ -2,6 +2,8 @@ package com.ssafy.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -18,8 +20,8 @@ import org.springframework.web.bind.annotation.RestController;
 import com.ssafy.service.BoardService;
 import com.ssafy.vo.Board;
 import com.ssafy.vo.Comment;
+import com.ssafy.vo.User;
 
-import org.springframework.http.ResponseEntity;
 import io.swagger.annotations.ApiOperation;
 import lombok.extern.slf4j.Slf4j;
 
@@ -31,6 +33,26 @@ public class BoardRestController {
 	
 	@Autowired
 	BoardService service;
+	
+	@GetMapping("/getLoginedUser")
+	@ApiOperation(value="현재 로그인된 사용자 반환")
+	public ResponseEntity<Object> getLoginedUserId(HttpSession session){
+		log.trace("getLoginedUser called!");
+		
+		String id = "null";
+		try {			
+			User user = (User)session.getAttribute("LoginUser");
+			System.out.println(user);
+			if(user != null) {
+				id = user.getId();						
+			}
+		} catch (RuntimeException e) {
+			log.error("getLoginedUser", e);
+			throw e; 
+		}
+		System.out.println(id);
+		return new ResponseEntity<Object>(id, HttpStatus.OK);
+	}
 	
 	@PostMapping("/insertBoard") 
 	@ApiOperation(value="새로운 게시판 글 등록") // response 는 담고 있는 객체 타입

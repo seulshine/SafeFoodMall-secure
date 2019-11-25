@@ -16,5 +16,7 @@ public class Board {
 	String title;
 	Date regdate;
 	String contents;
+
+	
 	
 }

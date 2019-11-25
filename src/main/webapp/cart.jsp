@@ -81,60 +81,6 @@ footer {
 	<jsp:include page="/top.jsp" />
 
 
-	<div id="table">
-		<table>
-			<tr style="vertical-align: top">
-				<td style="text-align: center">
-					<h2>Shopping Cart</h2>
-					<form action='<c:url value="/shop/updateCartQuantities.do"/>'
-						method="post">
-						<table id="cart">
-							<tr bgcolor="#cccccc">
-								<th>상품코드</th>
-								<th>상품이름</th>
-								<th>주문수량</th>
-								<th>상품가격</th>
-								<th>전체가격</th>
-								<th>&nbsp;</th>
-							</tr>
-
-							<c:if test="${empty carts}">
-								<tr>
-									<td colspan="8"><b>Your cart is empty.</b></td>
-								</tr>
-							</c:if>
-
-							<c:forEach var="cartItem" items="${carts}">
-								<tr bgcolor="blue">
-									<td><b> <a
-											href='<c:url value="/shop/viewItem.do">
-                  <c:param name="itemId" value="${cartItem.item.itemId}"/></c:url>'>
-												<c:out value="${cartItem.code}" />
-										</a></b></td>
-									<td><c:out value="${cartItem.name}" /></td>
-									<td><c:out value="${cartItem.qty}" /> <c:out
-											value="${cartItem.price}" /> <c:out
-											value="${cartItem.qty * cartItem.price}" />
-									<td style="text-align: center"><input type="text" size="3"
-										name='<c:out value="${cartItem.item.itemId}"/>'
-										value='<c:out value="${cartItem.quantity}"/>' /></td>
-
-									<td><a href='removeFromCart'>삭제</a></td>
-								</tr>
-							</c:forEach>
-							<tr>
-								<td colspan="7" align="right"><b>Sub Total: <fmt:formatNumber
-											value="${cart.totalNumber}" pattern="$#,##0.00" /></b><br>
-								<br> <input type="text" name="update" /></td>
-								<td>&nbsp;</td>
-							</tr>
-						</table>
-
-					</form>
-				</td>
-			</tr>
-		</table>
-	</div>
 
 	<jsp:include page="/bottom.jsp" />
 </body>

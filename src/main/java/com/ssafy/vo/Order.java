@@ -19,7 +19,7 @@ public class Order implements Serializable {
   /* Private Fields */
 
   private int orderId;
-  private String id;
+  private String id; //userId
   private Date orderDate;
   private String shipAddress1;
   private String shipAddress2;
@@ -33,7 +33,7 @@ public class Order implements Serializable {
   private String billState;
   private String billZip;
   private String billCountry;
-  private String courier;
+  private String  courier;
   private double totalPrice;
   private String billToFirstName;
   private String billToLastName;

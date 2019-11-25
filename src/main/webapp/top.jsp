@@ -19,7 +19,8 @@
 						<input type="password" name="password" id="password" class="form-control" placeholder="비밀번호" required="">
 					</div>
 					<div class="modal-footer">
-						<input type="submit" value="login">
+						<input type="submit" value="로그인">
+						<button type="button" class="btn btn-danger" onclick="location.href='findPwd'">비밀번호찾기</button>
 					</div>
 				</form>
 			</div>

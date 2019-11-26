@@ -68,9 +68,11 @@ footer {
 </style>
 </head>
 <body>
+<div style="text-align: center">
 <jsp:include page="/top.jsp" />
-<iframe src="./board/index.html" frameborder="0" width="100%"  marginwidth="0" marginheight="0" style="border:0px; height:100vh">iframe 오류!</iframe>
+<iframe src="http://api.nongsaro.go.kr/sample/ajax/monthFd/monthFd.html" width="800px" style="border:100px; height:100vh">iframe 오류!</iframe>
 <jsp:include page="/bottom.jsp"/>
+</div>
 
 </body>
 <script>

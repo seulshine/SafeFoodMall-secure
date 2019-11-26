@@ -15,7 +15,7 @@
     </select>
     
     <select id="searchAllByUser" parameterType="string" resultType="cart">
-    	select c.id, c.code, f.name, c.qty, i.price from cart c, inventory i, food f where c.code=i.code and i.code = f.code and c.id= #{id}
+    	select c.id, c.code, f.img, f.name, c.qty, i.price from cart c, inventory i, food f where c.code=i.code and i.code = f.code and c.id= #{id}
     </select>
     <delete id="deleteCart" parameterType="cart">
     	delete from cart where id= #{id} and code = #{code}

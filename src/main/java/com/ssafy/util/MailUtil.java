@@ -13,14 +13,14 @@ public class MailUtil {
 
 		String hostSMTP = "smtp.naver.com"; // SMTP 서버명
 
-		String hostSMTPid = "네이버 아이디"; // 아이디
+		String hostSMTPid = "yesuri1009"; // 아이디
 
-		String hostSMTPpwd = "네이버 비밀번호"; // 비밀번호
+		String hostSMTPpwd = "iamyeseul"; // 비밀번호
 		// 보내는 사람
 
-		String fromEmail = "보내는사람@메일.com";
+		String fromEmail = "yesuri@naver.com";
 
-		String fromName = "보내는사람 이름";
+		String fromName = "SafeFood";
 
 		// email 전송
 

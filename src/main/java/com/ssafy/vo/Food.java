@@ -33,6 +33,8 @@ public class Food {
 	/**이미지 경로*/
 	protected String img;
 	protected String allergy;
+	
+	protected int watch;
 	public Food() {
 	}
 	public Food(int code) {
@@ -135,6 +137,14 @@ public class Food {
 	}
 	public void setAllergy(String allergy) {
 		this.allergy = allergy;
+	}
+	
+	
+	public int getWatch() {
+		return watch;
+	}
+	public void setWatch(int watch) {
+		this.watch = watch;
 	}
 	@Override
 	public String toString() {

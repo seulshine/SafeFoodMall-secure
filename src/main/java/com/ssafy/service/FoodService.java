@@ -11,4 +11,5 @@ public interface FoodService {
 	public Food search(int code);
 	public List<Food> searchBest();
 	public List<Food> searchBestIndex();	
+	public void watchFood(int code);
 }

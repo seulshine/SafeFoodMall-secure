@@ -15,6 +15,11 @@
 	<select id="getFood" resultType="food" parameterType="integer">
 		select * from food where code=#{code}
 	</select>
+	
+	
+	<update id="watchFood" parameterType="integer">
+		update food set watch=watch+1 where code=#{code}
+	</update>
 
   <resultMap type="food" id="foodDefault">
 	<result column='code' property="code"/>

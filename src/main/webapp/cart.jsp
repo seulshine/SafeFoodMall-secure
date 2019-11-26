@@ -57,32 +57,24 @@ footer {
 	align-items: center;
 	margin-left: 380px;
 }
+
+#carts {
+	margin-left : 370px;
+}
 </style>
 </head>
 <script type="text/javascript"
 	src="https://www.gstatic.com/charts/loader.js"></script>
-<script>
-	let id = "${LoginUser.id }";
-	let carts = {};
-	$.ajax({
-		url : "/safefoodvue/cart/" + id,
-		type : 'get',
-
-		success : function(data) {
-			carts = data;
-			console.log(carts);
-		},
-		error : function() {
-			alert("error");
-		}
-	});
-</script>
 <body>
 	<jsp:include page="/top.jsp" />
 
-
-
+	<div id="carts">
+		<iframe src="./carts/index.html" frameborder="0" width="100%"
+			height="500px" marginwidth="0" marginheight="0" scrolling="auto"
+			style="border: 0px">iframe 오류!</iframe>
+	</div>
 	<jsp:include page="/bottom.jsp" />
+
 </body>
 
 </html>

@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html>
@@ -19,8 +19,20 @@
 <!-- 합쳐지고 최소화된 최신 자바스크립트 -->
 <script
 	src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-	
+
+
 <style>
+.jumbotron {
+	height: 400px;
+	background: white;
+	background-image: url('https://images.unsplash.com/photo-1543352634-a1c51d9f1fa7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&w=1000&q=80');
+	background-repeat: no-repeat;
+	background-position: center;
+	background-size: cover;
+	padding-top: 120px;
+	margin-top: 10px;
+}
+
 #search {
 	background: gray !important;
 	color: white !important;
@@ -32,9 +44,8 @@
 }
 
 @import url('https://fonts.googleapis.com/css?family=Jua&display=swap');
-
 #title {
-	font-family: 'Jua', sans-serif;
+ 	font-family: 'Jua', sans-serif;
 }
 
 #navbar {
@@ -52,75 +63,30 @@ footer {
 	white-space: nowrap;
 	height: 20px;
 }
-.carousel {
-	margin-left:24%;
-	width:1000px;
-    height: 440px;
-    margin-bottom: 20px;
-}.carousel {
-    position: relative;
-}
 
-.item {
-    height: 440px;
-    
-}
-
-div {
-    display: block;
-}
-
-
-img {
-  width:100%;
-  max-height:100%;
-}
 
 </style>
 </head>
 <body>
 	<jsp:include page="/top.jsp" />
 	<!-- Main jumbotron for a primary marketing message or call to action -->
-	
-	<div id="myCarousel" class="carousel slide" data-ride="carousel">
-      <!-- Indicators -->
-      <ol class="carousel-indicators">
-        <li data-target="#myCarousel" data-slide-to="0" class=""></li>
-        <li data-target="#myCarousel" data-slide-to="1" class="active"></li>
-        <li data-target="#myCarousel" data-slide-to="2" class=""></li>
-      </ol>
-      <div class="carousel-inner" role="listbox">
-        <div class="item">
-          <img class="first-slide" src="img/safefood11.png" alt="First slide">
-          <div class="container">
-
-          </div>
-        </div>
-        <div class="item active">
-          <img class="second-slide" src="img/wordfoodsafety.png" alt="Second slide">
-
-        </div>
-        <div class="item">
-          <img class="third-slide" src="img/food-safety-6.jpg" alt="Third slide">
-
-        </div>
-      </div>
-      <a class="left carousel-control" href="#myCarousel" role="button" data-slide="prev">
-        <span class="glyphicon glyphicon-chevron-left" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a class="right carousel-control" href="#myCarousel" role="button" data-slide="next">
-        <span class="glyphicon glyphicon-chevron-right" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-    </div>
-    
+	<div class="jumbotron">
+		<div class="container">
+			<div id="title">
+				<h1>
+					WHAT WE <strong>PROVIDE</strong>
+				</h1>
+				<hr>
+				<p>건강한 삶을 위한 먹거리 프로젝트</p>
+			</div>
+		</div>
+	</div>
 	<div class="container" id="search">
 		<div class="row">
 			<div class="col-md-2 col-md-offset-1">
 				<div>
-					<label for="condition">검색 조건</label> <select id="type"
-						class="form-control">
+					<label for="condition">검색 조건</label> 
+					<select id="type" class="form-control">
 						<option>상품명</option>
 						<option>재료</option>
 						<option>제조사</option>
@@ -137,11 +103,12 @@ img {
 			</div>
 			<div class="col-md-1">
 				<br>
-				<button id="keywordGet" type="button" class="btn btn-info">검색</button>
+				<button id="keywordGet" type="button" class="btn btn-info" >검색</button>
 			</div>
 			<div class="col-md-2 ">
 				<div>
-					<label for="sort">정렬</label> <select id="sort" class="form-control">
+					<label for="sort">정렬</label> 
+					<select id="sort" class="form-control">
 						<option>상품명</option>
 						<option>칼로리</option>
 					</select>
@@ -149,8 +116,8 @@ img {
 			</div>
 			<div class="col-md-2">
 				<div>
-					<label for="order">순서</label> <select id="order"
-						class="form-control">
+					<label for="order">순서</label> 
+					<select id="order" class="form-control">
 						<option>정순</option>
 						<option>역순</option>
 					</select>
@@ -158,7 +125,7 @@ img {
 			</div>
 			<div class="col-md-1">
 				<br>
-				<button id="sortbtn" type="button" class="btn btn-info">정렬</button>
+				<button id="sortbtn" type="button" class="btn btn-info" >정렬</button>
 			</div>
 			<div class="col-md-1"></div>
 		</div>
@@ -167,6 +134,7 @@ img {
 	<jsp:include page="/bottom.jsp" />
 </body>
 <script>
+
 	let foods = {};
 	$.ajax({
 		url : "/safefoodvue/food/getAllFoods",
@@ -180,25 +148,26 @@ img {
 			alert("error");
 		}
 	});
+	
+// 	$.ajax({
+// 		url : "res/FoodNutritionInfo.json",
+// 		dataType : "json",
+// 		success : function(data) {
+// 			for (var i = 0; i < foods.length; i++) {
+// 				foods[i].nutr = data.response.body.items.item[i];
+// 			}
 
-	// 	$.ajax({
-	// 		url : "res/FoodNutritionInfo.json",
-	// 		dataType : "json",
-	// 		success : function(data) {
-	// 			for (var i = 0; i < foods.length; i++) {
-	// 				foods[i].nutr = data.response.body.items.item[i];
-	// 			}
+// 		},
+// 		error : function() {
+// 			alert("error");
+// 		}
+// 	});
 
-	// 		},
-	// 		error : function() {
-	// 			alert("error");
-	// 		}
-	// 	});
-
+	
 	$("#sortbtn").on("click", function() {
 		let $sort = $('#sort').val();
 		let $order = $('#order').val();
-
+		
 		// select sort
 		if ($sort == "상품명") {
 			if ($order == "정순") {
@@ -223,28 +192,28 @@ img {
 				}
 			}
 		}
-
+		
 		// quick sort
-		else if ($sort == "칼로리") {
-			quickSort(0, result.length - 1, $order);
+		else if ($sort == "칼로리"){
+				quickSort(0, result.length-1, $order);
 		}
-
+		
 		console.log("칼로리 출력")
 		$("#getList").html("");
 		result.forEach(function(elt, index) {
-			console.log(elt.name + " : " + elt.nutr.NUTR_CONT1)
+			console.log(elt.name + " : " + 	elt.nutr.NUTR_CONT1)
 			showProduct(elt, index);
 		})
 	})
-
+	
 	function quickSort(l, r, order) {
 		if (l >= r) {
 			return;
-		}
+		} 
 		let x = result[r].nutr.NUTR_CONT1 * 1.0;
 		let i = l - 1;
 
-		if (order == "정순") {
+		if (order == "정순"){
 			for (var j = l; j < r; j++) {
 				if (result[j].nutr.NUTR_CONT1 * 1.0 <= x) {
 					i++;
@@ -253,7 +222,7 @@ img {
 					result[j] = temp;
 				}
 			}
-		} else if (order == "역순") {
+		} else if (order == "역순"){
 			for (var j = l; j < r; j++) {
 				if (result[j].nutr.NUTR_CONT1 * 1.0 >= x) {
 					i++;
@@ -267,7 +236,7 @@ img {
 		result[i + 1] = result[r];
 		result[r] = temp;
 		let s = i + 1;
-
+		
 		quickSort(l, s - 1, order);
 		quickSort(s + 1, r, order);
 	}
@@ -308,28 +277,28 @@ img {
 		}
 	});
 
-	// 	function goDetail(index) {
-	// 		result.forEach(function(elt, idx) {
-	// 			if (idx == index) {
-
-	// 				sessionStorage.setItem('code', elt.code);
-	// 				sessionStorage.setItem('name', elt.name);
-	// 				sessionStorage.setItem('maker', elt.maker);
-	// 				sessionStorage.setItem('material', elt.material);
-	// 				sessionStorage.setItem('img', elt.img);
-	// 				sessionStorage.setItem('SERVING_WT', elt.nutr.SERVING_WT);
-	// 				sessionStorage.setItem('NUTR_CONT1', elt.nutr.NUTR_CONT1);
-	// 				sessionStorage.setItem('NUTR_CONT2', elt.nutr.NUTR_CONT2);
-	// 				sessionStorage.setItem('NUTR_CONT3', elt.nutr.NUTR_CONT3);
-	// 				sessionStorage.setItem('NUTR_CONT4', elt.nutr.NUTR_CONT4);
-	// 				sessionStorage.setItem('NUTR_CONT5', elt.nutr.NUTR_CONT5);
-	// 				sessionStorage.setItem('NUTR_CONT6', elt.nutr.NUTR_CONT6);
-	// 				sessionStorage.setItem('NUTR_CONT7', elt.nutr.NUTR_CONT7);
-	// 				sessionStorage.setItem('NUTR_CONT8', elt.nutr.NUTR_CONT8);
-	// 				sessionStorage.setItem('NUTR_CONT9', elt.nutr.NUTR_CONT9);
-	// 			}
-	// 		});
-	// 	}
+// 	function goDetail(index) {
+// 		result.forEach(function(elt, idx) {
+// 			if (idx == index) {
+				
+// 				sessionStorage.setItem('code', elt.code);
+// 				sessionStorage.setItem('name', elt.name);
+// 				sessionStorage.setItem('maker', elt.maker);
+// 				sessionStorage.setItem('material', elt.material);
+// 				sessionStorage.setItem('img', elt.img);
+// 				sessionStorage.setItem('SERVING_WT', elt.nutr.SERVING_WT);
+// 				sessionStorage.setItem('NUTR_CONT1', elt.nutr.NUTR_CONT1);
+// 				sessionStorage.setItem('NUTR_CONT2', elt.nutr.NUTR_CONT2);
+// 				sessionStorage.setItem('NUTR_CONT3', elt.nutr.NUTR_CONT3);
+// 				sessionStorage.setItem('NUTR_CONT4', elt.nutr.NUTR_CONT4);
+// 				sessionStorage.setItem('NUTR_CONT5', elt.nutr.NUTR_CONT5);
+// 				sessionStorage.setItem('NUTR_CONT6', elt.nutr.NUTR_CONT6);
+// 				sessionStorage.setItem('NUTR_CONT7', elt.nutr.NUTR_CONT7);
+// 				sessionStorage.setItem('NUTR_CONT8', elt.nutr.NUTR_CONT8);
+// 				sessionStorage.setItem('NUTR_CONT9', elt.nutr.NUTR_CONT9);
+// 			}
+// 		});
+// 	}
 
 	function showProduct(elt, index) {
 
@@ -340,26 +309,23 @@ img {
 				$("#item" + index).html()
 						+ '<div id="itemImg'+ index +'" class="col-md-3">');
 		$("#itemImg" + index).html(
-				$("#itemImg" + index).html() + '<img src="' + elt.img
+				$("#itemImg" + index).html() + '<img src="' +elt.img
 						+ '"  width="50%">');
 		$("#item" + index).html(
 				$("#item" + index).html()
 						+ '<div id="itemTxt'+ index +'" class="col-md-9">');
 		$("#itemTxt" + index).html(
 				$("#itemTxt" + index).html() + '<h2>' + elt.name + '</h2>');
-		$("#itemTxt" + index).html(
-				$("#itemTxt" + index).html() + '<span> watched : '+ elt.watch +'</span>');
 		let maText = elt.material;
 		if (elt.material.length >= 100)
 			maText = elt.material.substr(0, 100) + ' ...';
 		$("#itemTxt" + index).html(
 				$("#itemTxt" + index).html() + '<p>' + maText + '<p>');
-		$("#itemTxt" + index).html(
-				$("#itemTxt" + index).html()
-						+ '<p><a class="btn btn-info" href="detail.do'
-						+ '?code=' + elt.code + '&id=' + '${LoginUser.id }'
-						+ '">Viewdetails&raquo;</a></p>');
+		$("#itemTxt" + index)
+				.html(
+						$("#itemTxt" + index).html()
+								+ '<p><a class="btn btn-info" href="detail.do'+ '?code=' + elt.code + '&id=' + '${LoginUser.id }' +'">Viewdetails&raquo;</a></p>');
+
 	}
 </script>
-
 </html>

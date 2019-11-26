@@ -35,6 +35,10 @@ public class MainController {
 	@GetMapping("detail.do")
 	public String detail(@RequestParam("code") int code, @RequestParam("id") String id, Model model) {
 		try {
+		
+
+			fs.watchFood(code); // 본 갯수 업데이트
+			
 			model.addAttribute("code", code);
 			System.out.println("id : " + id);
 			History history = new History(id, code);
@@ -56,6 +60,7 @@ public class MainController {
 			if(instock != null && instock >= 0) {
 				model.addAttribute("instock", instock.intValue());
 			}
+			
 			
 
 			return "detail";

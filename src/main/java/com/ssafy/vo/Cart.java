@@ -14,6 +14,7 @@ public class Cart {
 	private int price;
 	private int code;
 	private int qty;
+	private String img;
 //	private int listPrice; // code * qty
 //	private int totalCost; // cart의 총 합 수
 	

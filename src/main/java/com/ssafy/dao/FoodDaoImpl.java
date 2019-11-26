@@ -131,4 +131,9 @@ public class FoodDaoImpl implements FoodDao {
 		return null;
 	}
 
+	@Override
+	public void watchFood(int code) {
+		session.update(foodnamespace + "watchFood", code);
+	}
+
 }

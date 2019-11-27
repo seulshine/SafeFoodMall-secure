@@ -29,7 +29,7 @@ import lombok.extern.slf4j.Slf4j;
 @RestController
 @Slf4j
 @CrossOrigin({"*"})
-public class CartController {
+public class CartRestController {
 
 	@Autowired
 	CartService service;

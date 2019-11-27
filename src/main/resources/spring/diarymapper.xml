@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+  <mapper namespace="com.ssafy.mapper.DiaryMapper">
+	  <insert id="insertDiary" parameterType="diary">
+	  	insert into diary (year, month, day, meal, time, kind) values (#{year}, #{month}, #{day}, #{meal}, #{time}, #{kind})
+	  </insert>
+	  
+
+	  <update id="updateDiary" parameterType="diary">
+	  	update diary set year=#{year}, month=#{month}, day=#{day}, meal=#{meal}, time=#{time}, kind=#{kind} WHERE no=#{no}
+	  </update>
+	  
+	  <delete id="deleteDiary" parameterType='int'>
+	  	delete from diary where no=#{no}
+	  </delete>
+	  
+	  <select id="searchDiary" parameterType='diary' resultType='diary'>
+	  	select * from diary where year=#{year} and month=#{month} and day=#{day}
+	  </select>
+
+
+	  
+  </mapper>

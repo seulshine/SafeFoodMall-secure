@@ -1,5 +1,9 @@
 package com.ssafy.vo;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
 /** 식품 정보 */
 public class Food {
 	/**식품을 구별하는 코드 */

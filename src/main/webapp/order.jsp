@@ -80,7 +80,21 @@ footer {
 	    <div class="col-md-4 col-md-offset-2" id="calendarContainer"></div>
 	    <div class="col-md-4" id="organizerContainer"></div>
 	</div>
-	
+	<div style='text-align: center;'>
+		먹은음식
+		<input type='text' id='foodName'>
+	</div>
+	<div style='text-align: center;'>
+		먹은끼니
+		<input type='text' id='mealTime'>
+	</div>
+	<div style='text-align: center;'>
+		먹은시간
+		<input type='text' id='eatenTime'>
+	</div>
+	<div style='text-align: center;'>
+		<button onclick="addDiary()">저장</button>
+	</div>
 	<jsp:include page="/bottom.jsp" />
 
 </body>
@@ -108,10 +122,10 @@ var data = {
                 11: {
                     26: [
                         {
-                            startTime: "00:00",
-                            endTime: "24:00",
+                            startTime: "점심",
+                            endTime: "14:00",
                             text: "Christmas Day"
-                        }
+                        },
                     ]
                 }
             }
@@ -195,22 +209,198 @@ organizer.setOnClickListener('year-slider',
 
 
 organizer.onMonthChange = function (callback) {
-    var xhttp = new XMLHttpRequest();
-    xhttp.onreadystatechange = function() {
-        if (this.readyState == 4 && this.status == 200) {
-            // TODO : Change the Organizer's Data to the new Data
-            // TODO : that you just grabbed from the Ajax Request
+	let dateStr = calendar.getDateString().split(' ');
+	let mon = 0;
+	if(dateStr[0] == 'January') {
+		mon = 1;
+	} else if(dateStr[0] == 'Feburary'){
+		mon = 2;
+	} else if(dateStr[0] == 'March'){
+		mon = 3;
+	} else if(dateStr[0] == 'April'){
+		mon = 4;
+	} else if(dateStr[0] == 'May'){
+		mon = 5;
+	} else if(dateStr[0] == 'June'){
+		mon = 6;
+	} else if(dateStr[0] == 'July'){
+		mon = 7;
+	} else if(dateStr[0] == 'August'){
+		mon = 8;
+	} else if(dateStr[0] == 'September'){
+		mon = 9;
+	} else if(dateStr[0] == 'October'){
+		mon = 10;
+	} else if(dateStr[0] == 'November'){
+		mon = 11;
+	} else if(dateStr[0] == 'December'){
+		mon = 12;
+	}
+	let day = dateStr[1].substr(0, dateStr[1].length-1);
+	let year = dateStr[2];
+	
+	let list = [];
+	$.ajax({
+		url : "/safefoodvue/diary/searchDiary",
+		type : 'post',
+		headers: { 
+	        'Accept': 'application/json',
+	        'Content-Type': 'application/json' 
+	    },
+		data : JSON.stringify({
+			year: year,
+			month: mon,
+		}),
+		success : function(response) {
+			//data = {};
+			response.forEach(resData => {
+				if(data.hasOwnProperty(resData.year)){
+					if(data[resData.year].hasOwnProperty(resData.month)){
+						if(data[resData.year][resData.month].hasOwnProperty(resData.day)){
+							data[resData.year][resData.month][resData.day].push({
+								startTime: resData.meal,
+								endTime: resData.time,
+								text: resData.kind
+							})
+						} else {
+							data[resData.year][resData.month][resData.day] = [{
+								startTime: resData.meal,
+								endTime: resData.time,
+								text: resData.kind
+							}]
+						}
+					} else {
+						data[resData.year][resData.month] = {};
+						data[resData.year][resData.month][resData.day] = [{
+							startTime: resData.meal,
+							endTime: resData.time,
+							text: resData.kind
+						}]
+					}
+				} else {
+					data[resData.year] = {};
+					data[resData.year][resData.month] = {};
+					data[resData.year][resData.month][resData.day] = [{
+						startTime: resData.meal,
+						endTime: resData.time,
+						text: resData.kind
+					}]
+				}
 
-            organizer.data = this.responseText;
-
-            // TODO : Call the Callback to display the Data
-            callback();
-        }
-    };
-    xhttp.open("GET", "someurl.json", true);
-    xhttp.send();
+			});
+			calendar.update();
+			//console.log(response);
+		},
+		error : function() {
+			alert("error");
+		}
+	});
+	
+		
 };
 
+addDiary = function(){
+	let dateStr = calendar.getDateString().split(' ');
+	let mon = 0;
+	if(dateStr[0] == 'January') {
+		mon = 1;
+	} else if(dateStr[0] == 'Feburary'){
+		mon = 2;
+	} else if(dateStr[0] == 'March'){
+		mon = 3;
+	} else if(dateStr[0] == 'April'){
+		mon = 4;
+	} else if(dateStr[0] == 'May'){
+		mon = 5;
+	} else if(dateStr[0] == 'June'){
+		mon = 6;
+	} else if(dateStr[0] == 'July'){
+		mon = 7;
+	} else if(dateStr[0] == 'August'){
+		mon = 8;
+	} else if(dateStr[0] == 'September'){
+		mon = 9;
+	} else if(dateStr[0] == 'October'){
+		mon = 10;
+	} else if(dateStr[0] == 'November'){
+		mon = 11;
+	} else if(dateStr[0] == 'December'){
+		mon = 12;
+	}
+	let day = dateStr[1].substr(0, dateStr[1].length-1);
+	let year = dateStr[2];
+	
+
+	console.log(mon, day, year);
+
+	let foodName = $("#foodName").val();
+	let mealTime = $("#mealTime").val();
+	let eatenTime = $("#eatenTime").val();
+	
+	//year, month, day, meal, time, kind
+	$.ajax({
+		url : "/safefoodvue/diary/insertDiary",
+		type : 'post',
+		headers: { 
+	        'Accept': 'application/json',
+	        'Content-Type': 'application/json' 
+	    },
+		data : JSON.stringify({
+			year: year,
+			month: mon,
+			day: day,
+			meal: mealTime,
+			time: eatenTime,
+			kind: foodName
+		}),
+		success : function(response) {
+			//data = response;
+			console.log(response);
+			
+		},
+		error : function() {
+			alert("error");
+		}
+	});
+	
+	if(data.hasOwnProperty(year)){
+		if(data[year].hasOwnProperty(mon)){
+			if(data[year][mon].hasOwnProperty(day)){
+				data[year][mon][day].push({
+					startTime: mealTime,
+					endTime: eatenTime,
+					text: foodName
+				})
+			} else {
+				data[year][mon][day] = [{
+					startTime: mealTime,
+					endTime: eatenTime,
+					text: foodName
+				}]
+			}
+		} else {
+			data[year][mon] = {};
+			data[year][mon][day] = [{
+				startTime: mealTime,
+				endTime: eatenTime,
+				text: foodName
+			}]
+		}
+	} else {
+		data[year] = {};
+		data[year][mon] = {};
+		data[year][mon][day] = [{
+			startTime: mealTime,
+			endTime: eatenTime,
+			text: foodName
+		}]
+	}
+	calendar.update();
+	
+	$("#foodName").val('');
+	$("#mealTime").val('');
+	$("#eatenTime").val('');
+}
 
 
 </script>

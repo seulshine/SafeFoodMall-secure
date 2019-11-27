@@ -81,4 +81,21 @@ public class CartRestController {
 		}
 		
 	}
+	
+	
+	
+	@DeleteMapping("removeAllCart/{id}")
+	public ResponseEntity<Object> deleteFromCart(@PathVariable String id) {
+		try {
+			int result = service.deleteAllCart(id);
+			
+			return new ResponseEntity<Object>(result, HttpStatus.OK);
+
+		} catch(RuntimeException e) {
+			log.error("장바구니 삭제 실패", e);
+			throw e; 
+			
+		}
+		
+	}
 }

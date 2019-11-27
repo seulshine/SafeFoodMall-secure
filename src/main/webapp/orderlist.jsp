@@ -58,8 +58,8 @@ footer {
 	margin-left: 380px;
 }
 
-#carts {
-	margin-left : 33%;
+#orders {
+	margin-left : 23%;
 }
 </style>
 </head>
@@ -68,8 +68,8 @@ footer {
 <body>
 	<jsp:include page="/top.jsp" />
 
-	<div id="carts">
-		<iframe src="./carts/index.html" frameborder="0" width="100%"
+	<div id="orders">
+		<iframe src="./orders/index.html" frameborder="0" width="100%"
 			height="500px" marginwidth="0" marginheight="0" scrolling="auto"
 			style="border: 0px">iframe 오류!</iframe>
 	</div>

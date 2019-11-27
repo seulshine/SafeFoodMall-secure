@@ -37,6 +37,10 @@ public class CartService {
 	public int deleteCart(Cart cart) {
 		return dao.deleteCart(cart);
 	}
+	
+	public int deleteAllCart(String id) {
+		return dao.deleteAllCart(id);
+	}
 
 	
 	public int searchInStock(int code) {

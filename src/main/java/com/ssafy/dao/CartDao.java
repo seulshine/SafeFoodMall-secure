@@ -48,6 +48,11 @@ public class CartDao {
 		return session.delete(stmt, cart);
 	}
 	
+	public int deleteAllCart(String id) {
+		String stmt = namespace + "deleteAllCart";
+		return session.delete(stmt, id);
+	}
+	
 	public int searchInStock(int code) {
 		String stmt = namespace + "searchInStock";
 		return session.selectOne(stmt, code);

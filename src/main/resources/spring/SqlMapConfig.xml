@@ -15,6 +15,7 @@
 		<typeAlias type="com.ssafy.vo.Comment"   		alias="comment"/>
 		<typeAlias type="com.ssafy.vo.Cart"   		alias="cart"/>
 		<typeAlias type="com.ssafy.vo.Diary"   		alias="diary"/>
+		<typeAlias type="com.ssafy.vo.Order"   		alias="order"/>
 		
 	</typeAliases>
 
@@ -26,6 +27,7 @@
 		 <mapper resource="spring/commentmapper.xml" />
 		 <mapper resource="spring/cartmapper.xml" />
 		 <mapper resource="spring/diarymapper.xml" />
+		 <mapper resource="spring/ordermapper.xml" />
 	</mappers>
 </configuration>
 

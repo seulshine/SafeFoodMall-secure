@@ -21,6 +21,9 @@
     	delete from cart where id= #{id} and code = #{code}
     </delete>
     
+     <delete id="deleteAllCart" parameterType="string">
+    	delete from cart where id= #{id}
+    </delete>
     
     <select id="searchInStock" parameterType="int" resultType="int">
     	select instock from inventory where code = #{code}

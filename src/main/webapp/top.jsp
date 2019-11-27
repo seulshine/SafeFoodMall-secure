@@ -60,6 +60,7 @@
 					<li><a href="#">내 섭취 정보</a></li>
 					<li><a href="#">예상 섭취 정보</a></li>
 					<li><a href="order.jsp">내 주문 내역</a></li>
+					<li><a href="orderlist.jsp">내 주문 내역2</a></li>
 				</ul>
 				<form class="navbar-form navbar-right" action="search.do" method="post">
 					<input type="text" name="word" class="form-control" placeholder="Search...">

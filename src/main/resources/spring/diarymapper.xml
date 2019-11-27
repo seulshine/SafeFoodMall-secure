@@ -17,7 +17,7 @@
 	  </delete>
 	  
 	  <select id="searchDiary" parameterType='diary' resultType='diary'>
-	  	select * from diary where year=#{year} and month=#{month} and day=#{day}
+	  	select * from diary where year=#{year} and month=#{month}
 	  </select>
 
 
